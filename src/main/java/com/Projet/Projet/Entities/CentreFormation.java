@@ -32,4 +32,5 @@ public class CentreFormation extends User{
     private List<Notification> notifications = new ArrayList<>();
 
     //transaction sponsoring, transaction client,
+    //test
 }
