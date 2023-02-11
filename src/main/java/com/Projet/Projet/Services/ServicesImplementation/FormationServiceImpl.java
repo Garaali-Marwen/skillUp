@@ -38,6 +38,9 @@ public class FormationServiceImpl implements FormationService {
 
     @Override
     public Formation updateFormation(Formation formation) {
+        if (!formationRepository.existsById(formation.getId())) {
+            throw new NoSuchElementException("Aucune formation avec ID : " + formation.getId());
+        }
         return formationRepository.save(formation);
     }
 
