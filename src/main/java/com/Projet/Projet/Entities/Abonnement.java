@@ -21,5 +21,7 @@ public class Abonnement {
     private CentreFormation centreFormation;
     @OneToOne
     private TransactionCentre transaction;
+
+    //test ahmed
 }
 
