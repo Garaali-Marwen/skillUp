@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface FormationService {
 
-    public Formation addFormation(Formation formation);
-    public List<Formation> getAllFormations();
+    Formation addFormation(Formation formation);
+    List<Formation> getAllFormations();
+    Formation getFormationById(Long formationId);
+    Formation updateFormation(Formation formation);
+    void deleteFormation(Long formationId);
+    Formation addSeanceToFormation(Long seanceId, Long formationId);
 
 
 }
