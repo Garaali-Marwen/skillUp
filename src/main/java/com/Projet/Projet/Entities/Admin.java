@@ -12,7 +12,8 @@ import java.util.List;
 @Data
 public class Admin extends User{
 
-    private String nom;
+
+    private String nom;//ali test
     private String prenom;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Notification> notifications = new ArrayList<>();
