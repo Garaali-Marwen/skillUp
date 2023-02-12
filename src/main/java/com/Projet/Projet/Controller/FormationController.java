@@ -1,7 +1,6 @@
 package com.Projet.Projet.Controller;
 
 import com.Projet.Projet.Entities.Formation;
-import com.Projet.Projet.Entities.Seance;
 import com.Projet.Projet.Services.FormationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
