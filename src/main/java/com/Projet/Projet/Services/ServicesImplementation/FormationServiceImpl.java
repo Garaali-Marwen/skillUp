@@ -1,12 +1,14 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
+import com.Projet.Projet.Entities.Client;
 import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Entities.Seance;
+import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Repositories.FormationRepository;
+import com.Projet.Projet.Services.ClientService;
 import com.Projet.Projet.Services.FormationService;
 import com.Projet.Projet.Services.SeanceService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class FormationServiceImpl implements FormationService {
 
     private FormationRepository formationRepository;
     private SeanceService seanceService;
+    private ClientRepository clientRepository;
 
 
     @Override
@@ -46,6 +49,8 @@ public class FormationServiceImpl implements FormationService {
 
     @Override
     public void deleteFormation(Long formationId) {
+        Formation formation = getFormationById(formationId);
+        clientRepository.findClientsByFormations_Id(formationId).forEach(client -> client.getFormations().remove(formation));
         formationRepository.deleteById(formationId);
     }
 
