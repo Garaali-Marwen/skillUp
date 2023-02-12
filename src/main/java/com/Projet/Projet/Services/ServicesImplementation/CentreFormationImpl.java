@@ -3,6 +3,7 @@ package com.Projet.Projet.Services.ServicesImplementation;
 import com.Projet.Projet.Entities.CentreFormation;
 import com.Projet.Projet.Repositories.CentreFormationRepository;
 import com.Projet.Projet.Services.CentreFormationService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +25,12 @@ public class CentreFormationImpl implements CentreFormationService {
 
     @Override
     public void deleteCentreFormation(final Long id) {
-
             centreFormationRepository.deleteById(id);
-
     }
 
     @Override
     public CentreFormation getCentreFormationById(Long id) {
-        return centreFormationRepository.findCentreFormationById(id);
+        return centreFormationRepository.findById(id).orElseThrow();
     }
 
 
