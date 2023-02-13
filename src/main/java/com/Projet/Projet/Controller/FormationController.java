@@ -33,7 +33,6 @@ public class FormationController {
     public void deleteFormation(@PathVariable("id") Long formationId){
         formationService.deleteFormation(formationId);
     }
-
     @GetMapping("/seance/{sid}/formation/{fid}")
     public Formation addSeanceToFormation(@PathVariable("sid") Long seanceId, @PathVariable("fid") Long formationId){
         return formationService.addSeanceToFormation(seanceId,formationId);
