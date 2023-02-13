@@ -21,7 +21,7 @@ public class Client extends User{
     private String adresse;
     private String fonction;
     private String email;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "client_formation",
             joinColumns =  @JoinColumn(name = "client_id", referencedColumnName = "id"),
