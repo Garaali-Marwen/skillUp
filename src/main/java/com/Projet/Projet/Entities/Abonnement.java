@@ -22,6 +22,5 @@ public class Abonnement {
     @OneToOne
     private TransactionCentre transaction;
 
-    //test ahmed
 }
 
