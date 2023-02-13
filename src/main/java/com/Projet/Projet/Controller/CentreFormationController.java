@@ -27,11 +27,17 @@ public class CentreFormationController {
         return centreFormationService.getCentreFormationById(id);
     }
     @DeleteMapping("/delete/{id}")
-    public void deleteCentreFormation(@PathVariable("id") Long id) {
-        centreFormationService.deleteCentreFormation(id) ;
+    public String deleteCentreFormation(@PathVariable("id") Long id) {
+        return centreFormationService.deleteCentreFormation(id) ;
     }
+
+
     @PostMapping("/add")
-    public CentreFormation addCentreFormation(@RequestBody CentreFormation centreFormation){
+    public String addCentreFormation(@RequestBody CentreFormation centreFormation){
         return centreFormationService.addCentre(centreFormation);
+    }
+    @PutMapping("/update")
+    public CentreFormation updateCentreFormation(@RequestBody CentreFormation centreFormation){
+        return centreFormationService.updateCentreFormation(centreFormation);
     }
 }
