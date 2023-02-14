@@ -14,6 +14,7 @@ public class TransactionClient {
     private Long id;
     private LocalDate date;
     private String heure;
+    private double valeur;
     @ManyToOne
     private Client client;
     @ManyToOne
