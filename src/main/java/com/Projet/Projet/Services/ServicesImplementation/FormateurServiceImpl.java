@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,9 @@ public class FormateurServiceImpl implements FormateurService {
     }
 
     @Override
-    public Optional<Formateur> getFormateurById(Long id) {
-        return formateurRespository.findById(id);
+    public Formateur getFormateurById(Long id) {
+        return formateurRespository.findById(id)
+                .orElseThrow(()-> new NoSuchElementException("Aucun formateur trouvé"));
     }
 
     @Override
@@ -37,13 +39,13 @@ public class FormateurServiceImpl implements FormateurService {
 
 
 
-     public Optional<Formateur> updateFormateur(Long id, Formateur formateur){
-        Optional<Formateur> newFormateur = getFormateurById(id);
+     public Formateur updateFormateur(Long id, Formateur formateur){
+        Formateur newFormateur = getFormateurById(id);
 
-         newFormateur.get().setNom(formateur.getNom());
-         newFormateur.get().setPrenom(formateur.getPrenom());
-         newFormateur.get().setEmail(formateur.getEmail());
-         newFormateur.get().setPhoto(formateur.getPhoto());
+         newFormateur.setNom(formateur.getNom());
+         newFormateur.setPrenom(formateur.getPrenom());
+         newFormateur.setEmail(formateur.getEmail());
+         newFormateur.setPhoto(formateur.getPhoto());
 
          formateurRespository.save(formateur);
 

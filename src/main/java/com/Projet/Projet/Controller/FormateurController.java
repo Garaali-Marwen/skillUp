@@ -21,7 +21,7 @@ public class FormateurController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Formateur> getFormateuById(@PathVariable Long id){
+    public Formateur getFormateuById(@PathVariable Long id){
         return formateurService.getFormateurById(id);
     }
 
@@ -31,7 +31,7 @@ public class FormateurController {
     }
 
     @PutMapping("/edit/{id}")
-    public Optional<Formateur> updateFormateur(@PathVariable Long id, @RequestBody Formateur formateur) {
+    public Formateur updateFormateur(@PathVariable Long id, @RequestBody Formateur formateur) {
         return formateurService.updateFormateur(id,formateur);
     }
 

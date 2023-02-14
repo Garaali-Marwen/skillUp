@@ -21,7 +21,7 @@ public class AbonnementController {
     }
 
     @GetMapping("/{id}")
-    Optional<Abonnement> getAbonnementById(@PathVariable Long id){
+    Abonnement getAbonnementById(@PathVariable Long id){
         return abonnementService.getAbonnementById(id);
     }
 
@@ -31,7 +31,7 @@ public class AbonnementController {
     }
 
     @PutMapping("/edit/{id}")
-    Optional<Abonnement> editAbonnement(@PathVariable Long id, @RequestBody Abonnement abonnement){
+    Abonnement editAbonnement(@PathVariable Long id, @RequestBody Abonnement abonnement){
         return abonnementService.editAbonnement(id,abonnement);
     }
 
