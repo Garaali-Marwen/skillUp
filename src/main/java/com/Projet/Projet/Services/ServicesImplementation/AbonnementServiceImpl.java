@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,9 @@ public class AbonnementServiceImpl implements AbonnementService {
     }
 
     @Override
-    public Optional<Abonnement> getAbonnementById(Long id) {
-        return abonnementRepository.findById(id);
+    public Abonnement getAbonnementById(Long id) {
+        return abonnementRepository.findById(id)
+                .orElseThrow(()-> new NoSuchElementException("pas d'abonnement avec cet id"));
     }
 
     @Override
@@ -31,14 +33,14 @@ public class AbonnementServiceImpl implements AbonnementService {
     }
 
     @Override
-    public Optional<Abonnement> editAbonnement(Long id, Abonnement abonnement) {
-        Optional<Abonnement> newAbonnement = getAbonnementById(id);
+    public Abonnement editAbonnement(Long id, Abonnement abonnement) {
+        Abonnement newAbonnement = getAbonnementById(id);
 
-        newAbonnement.get().setCentreFormation(abonnement.getCentreFormation());
-        newAbonnement.get().setDateDebut(abonnement.getDateDebut());
-        newAbonnement.get().setDateFin(abonnement.getDateFin());
-        newAbonnement.get().setType(abonnement.getType());
-        newAbonnement.get().setTransaction(abonnement.getTransaction());
+        newAbonnement.setCentreFormation(abonnement.getCentreFormation());
+        newAbonnement.setDateDebut(abonnement.getDateDebut());
+        newAbonnement.setDateFin(abonnement.getDateFin());
+        newAbonnement.setType(abonnement.getType());
+        newAbonnement.setTransaction(abonnement.getTransaction());
 
         abonnementRepository.save(abonnement);
         return newAbonnement;

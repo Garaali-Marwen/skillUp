@@ -8,9 +8,9 @@ import java.util.Optional;
 public interface FormateurService {
 
     List<Formateur> getAllFormateurs();
-    Optional<Formateur> getFormateurById(Long id);
+    Formateur getFormateurById(Long id);
     Formateur addFormateur(Formateur formateur);
     Formateur addFormateur(Optional<Formateur> formateur);
-    Optional<Formateur> updateFormateur(Long id, Formateur formateur);
+    Formateur updateFormateur(Long id, Formateur formateur);
      void deleteFormateur(Long id);
 }
