@@ -64,8 +64,8 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Notification addNotificationToCentreFormation(Long nId, Long cId) {
-        Notification notification=notificationRepository.findById(nId).orElse(null);
-        CentreFormation centreFormation=centreFormationRepository.findById(cId).orElse(null);
+        Notification notification=getNotificationById(nId);
+        CentreFormation centreFormation=centreFormationService.getCentreFormationById(cId);
         if(notification!=null){
             notification.setCentreFormation(centreFormation);
             editNotification(nId,notification);
@@ -79,7 +79,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Notification addNotificationToClient(Long nId, Long cId) {
-        Notification notification=notificationRepository.findById(nId).orElse(null);
+        Notification notification=getNotificationById(nId);
         Client client=clientService.getClientById(cId);
         if (notification!=null){
             notification.setClient(client);

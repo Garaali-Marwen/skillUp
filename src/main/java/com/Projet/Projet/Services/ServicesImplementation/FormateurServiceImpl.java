@@ -1,8 +1,11 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
 import com.Projet.Projet.Entities.Formateur;
+import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Repositories.FormateurRespository;
 import com.Projet.Projet.Services.FormateurService;
+import com.Projet.Projet.Services.FormationService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +14,12 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class FormateurServiceImpl implements FormateurService {
 
-    @Autowired
-    FormateurRespository formateurRespository;
+
+    private FormateurRespository formateurRespository;
+    private FormationService formationService;
 
     @Override
     public List<Formateur> getAllFormateurs() {
@@ -55,5 +60,16 @@ public class FormateurServiceImpl implements FormateurService {
     @Override
     public void deleteFormateur(Long id) {
         formateurRespository.deleteById(id);
+    }
+
+    @Override
+    public Formateur addFormateurToFormation(Long formateurId, Long formationId) {
+        Formateur formateur=getFormateurById(formateurId);
+        Formation formation=formationService.getFormationById(formationId);
+        formateur.getFormations().add(formation);
+        updateFormateur(formateurId,formateur);
+        formation.getFormateurs().add(formateur);
+        formationService.updateFormation(formation);
+        return formateur;
     }
 }

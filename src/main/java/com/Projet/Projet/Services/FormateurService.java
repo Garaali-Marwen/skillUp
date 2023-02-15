@@ -13,4 +13,5 @@ public interface FormateurService {
     Formateur addFormateur(Optional<Formateur> formateur);
     Formateur updateFormateur(Long id, Formateur formateur);
      void deleteFormateur(Long id);
+     Formateur addFormateurToFormation(Long formateurId,Long formationId);
 }

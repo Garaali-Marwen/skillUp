@@ -39,4 +39,8 @@ public class FormateurController {
     public void deleteFormateur(@PathVariable Long id){
         formateurService.deleteFormateur(id);
     }
+    @GetMapping("/{id}/formation/{fid}")
+    public Formateur addFormateurToFormation(@PathVariable("id") Long id,@PathVariable("fid") Long fid){
+        return formateurService.addFormateurToFormation(id,fid);
+    }
 }
