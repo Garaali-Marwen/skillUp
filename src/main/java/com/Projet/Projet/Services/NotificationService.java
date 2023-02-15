@@ -1,5 +1,6 @@
 package com.Projet.Projet.Services;
 
+import com.Projet.Projet.Entities.CentreFormation;
 import com.Projet.Projet.Entities.Notification;
 
 import java.util.List;
@@ -14,4 +15,7 @@ public interface NotificationService {
     Notification editNotification(Long id, Notification notification);
 
     void deleteNotification(Long id);
+    Notification addNotificationToCentreFormation(Long nId,Long cId);
+    Notification addNotificationToClient(Long nId,Long cId);
+    Notification addNotificationToAdmin(Long nId,Long aId);
 }

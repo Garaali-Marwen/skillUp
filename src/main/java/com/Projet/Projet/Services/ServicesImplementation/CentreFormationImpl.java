@@ -15,12 +15,9 @@ public class CentreFormationImpl implements CentreFormationService {
     private  CentreFormationRepository centreFormationRepository;
     @Override
     public String addCentre(CentreFormation centreFormation) {
-        CentreFormation centreFormation1 = centreFormationRepository.findById(centreFormation.getId()).orElse(null);
-        if (centreFormation1 == null) {
+
             centreFormationRepository.save(centreFormation);
-            return "centre ajouté avec succé";
-        } else
-            return "centre est déja existe";
+           return "ajouté avec succé";
 
     }
     @Override

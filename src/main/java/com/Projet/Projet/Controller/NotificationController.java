@@ -38,4 +38,12 @@ public class NotificationController {
     void deleteNotification (@PathVariable Long id){
         notificationService.deleteNotification(id);
     }
+    @GetMapping("/{nId}/centreFormation/{cId}")
+    public Notification addNotificationToCentreFormation(@PathVariable("nId") Long nid,@PathVariable("cId") Long cid){
+        return notificationService.addNotificationToCentreFormation(nid,cid);
+    }
+    @GetMapping("/{nId}/client/{cId}")
+    public Notification addNotificationToClient(@PathVariable("nId") Long nid,@PathVariable("cId") Long cid){
+        return notificationService.addNotificationToClient(nid,cid);
+    }
 }
