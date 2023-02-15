@@ -17,5 +17,4 @@ public interface NotificationService {
     void deleteNotification(Long id);
     Notification addNotificationToCentreFormation(Long nId,Long cId);
     Notification addNotificationToClient(Long nId,Long cId);
-    Notification addNotificationToAdmin(Long nId,Long aId);
 }

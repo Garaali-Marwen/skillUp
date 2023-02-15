@@ -92,9 +92,5 @@ public class NotificationServiceImpl implements NotificationService {
         return notification;
     }
 
-    @Override
-    public Notification addNotificationToAdmin(Long nId, Long aId) {
 
-        return null;
-    }
 }
