@@ -23,6 +23,6 @@ public class User {
             joinColumns =  @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "discussion_id", referencedColumnName = "id"))
     private List<Discussion> discussions = new ArrayList<>();
-
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Message> messages = new ArrayList<>();
 }
