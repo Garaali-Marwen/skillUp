@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,7 +22,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Message addMessage(Message message) {
         message.setDate(LocalDate.now());
-        message.setHeure(LocalDateTime.now().getHour()+":"+LocalDateTime.now().getMinute());
+        message.setHeure(String.valueOf(LocalTime.now()));
         return messageRepository.save(message);
     }
 
