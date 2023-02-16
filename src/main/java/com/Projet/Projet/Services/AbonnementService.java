@@ -12,4 +12,5 @@ public interface AbonnementService {
     Abonnement addAbonnement(Abonnement abonnement);
     Abonnement editAbonnement(Long id, Abonnement abonnement);
     void deleteAbonnement(Long id);
+    Abonnement addAbonnementToCentreFormation(Long aId,Long cId);
 }

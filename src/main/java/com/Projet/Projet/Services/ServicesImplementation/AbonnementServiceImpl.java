@@ -1,8 +1,10 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
 import com.Projet.Projet.Entities.Abonnement;
+import com.Projet.Projet.Entities.CentreFormation;
 import com.Projet.Projet.Repositories.AbonnementRepository;
 import com.Projet.Projet.Services.AbonnementService;
+import com.Projet.Projet.Services.CentreFormationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ public class AbonnementServiceImpl implements AbonnementService {
 
     @Autowired
     AbonnementRepository abonnementRepository;
+    @Autowired
+    private CentreFormationService centreFormationService;
 
     @Override
     public List<Abonnement> getAllAbonnements() {
@@ -49,5 +53,16 @@ public class AbonnementServiceImpl implements AbonnementService {
     @Override
     public void deleteAbonnement(Long id) {
         abonnementRepository.deleteById(id);
+    }
+
+    @Override
+    public Abonnement addAbonnementToCentreFormation(Long aId, Long cId) {
+        Abonnement abonnement=getAbonnementById(aId);
+        CentreFormation centreFormation=centreFormationService.getCentreFormationById(cId);
+        abonnement.setCentreFormation(centreFormation);
+        editAbonnement(aId,abonnement);
+        centreFormation.getAbonnements().add(abonnement);
+        centreFormationService.updateCentreFormation(centreFormation);
+        return abonnement;
     }
 }

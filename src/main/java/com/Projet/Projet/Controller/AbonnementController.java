@@ -39,4 +39,8 @@ public class AbonnementController {
     void deleteAbonnement(@PathVariable Long id){
         abonnementService.deleteAbonnement(id);
     }
+    @GetMapping("/{aId}/centreFormation/{cId}")
+    public Abonnement addAbonnementToCentreFormation(@PathVariable("aId") Long aId,@PathVariable("cId") Long cid){
+        return abonnementService.addAbonnementToCentreFormation(aId,cid);
+    }
 }
