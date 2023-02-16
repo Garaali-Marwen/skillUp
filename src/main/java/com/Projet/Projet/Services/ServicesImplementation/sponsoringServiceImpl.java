@@ -43,7 +43,7 @@ public class sponsoringServiceImpl implements SponsoringService {
 
     @Override
     public String updateSponsoring(Sponsoring sponsoring) {
-        Sponsoring sponsoring1=sponsoringRepository.findById(sponsoring.getId()).orElse(null);
+        Sponsoring sponsoring1=getSponsoringById(sponsoring.getId());
         if (sponsoring1 !=null){
             sponsoringRepository.save(sponsoring);
             return "sponsoring modifier avec succé";
