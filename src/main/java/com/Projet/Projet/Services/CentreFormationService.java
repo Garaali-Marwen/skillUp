@@ -9,7 +9,7 @@ public interface CentreFormationService {
     List<CentreFormation> getAllCentreFormation();
     String deleteCentreFormation(Long id) ;
     CentreFormation getCentreFormationById(Long id);
-    CentreFormation updateCentreFormation(CentreFormation centreFormation);
+    //CentreFormation updateCentreFormation(CentreFormation centreFormation);
 
     CentreFormation updateCentreFormation(Long cid, CentreFormation centreFormation);
 

@@ -43,10 +43,14 @@ public class CentreFormationController {
     }
 
     @GetMapping("/{cid}/abonnement/{aid}")
-    public CentreFormation addAbonnementToCentreFormation(@PathVariable Long cid, @PathVariable Long aid){
-        return centreFormationService.addAbonnementToCentreFormation(aid,cid);
-    @PutMapping("/update")
-    public CentreFormation updateCentreFormation(@RequestBody CentreFormation centreFormation){
-        return centreFormationService.updateCentreFormation(centreFormation);
+    public CentreFormation addAbonnementToCentreFormation(@PathVariable Long cid, @PathVariable Long aid) {
+        return centreFormationService.addAbonnementToCentreFormation(aid, cid);
+
     }
+    @PutMapping("/update/{cid}")
+    public CentreFormation updateCentreFormation(@PathVariable Long cid, @RequestBody CentreFormation centre ){
+        return centreFormationService.updateCentreFormation(cid, centre);
+    }
+
+
 }
