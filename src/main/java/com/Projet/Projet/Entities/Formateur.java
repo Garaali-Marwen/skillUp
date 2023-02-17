@@ -8,11 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Formateur {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Formateur extends User{
     private String nom;
     private String prenom;
     private String email;

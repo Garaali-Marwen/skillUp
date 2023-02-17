@@ -1,0 +1,16 @@
+package com.Projet.Projet.Services;
+
+import com.Projet.Projet.Entities.TransactionClient;
+
+import java.util.List;
+
+public interface TransactionClientService {
+
+    TransactionClient addTransactionClient(TransactionClient transactionClient);
+    List<TransactionClient> getAllTransactions();
+    TransactionClient getTransactionClientById(Long transactionId);
+    TransactionClient updateTransactionClient(TransactionClient transactionClient);
+    void deleteTransactionClient(Long transactionId);
+    TransactionClient addTransactionToClient(Long clientId, Long transactionId);
+    TransactionClient addTransactionToFormation(Long formationId, Long transactionId);
+}

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @AllArgsConstructor
@@ -23,25 +24,36 @@ public class CentreFormationImpl implements CentreFormationService {
     private OffreService offreService;
 
     @Override
-    public CentreFormation addCentre(CentreFormation centreFormation) {
-        return centreFormationRepository.save(centreFormation);
-    }
+    public String addCentre(CentreFormation centreFormation) {
+        CentreFormation centreFormation1 = centreFormationRepository.findById(centreFormation.getId()).orElse(null);
+        if (centreFormation1 == null) {
+            centreFormationRepository.save(centreFormation);
+            return "centre ajouté avec succé";
+        } else
+            return "centre est déja existe";
 
+    }
     @Override
     public List<CentreFormation> getAllCentreFormation() {
         return centreFormationRepository.findAll();
     }
 
     @Override
-    public void deleteCentreFormation(final Long id) {
+    public String deleteCentreFormation(final Long id) {
+        CentreFormation centreFormation=centreFormationRepository.findById(id).orElse(null);
+        if(centreFormation!=null){
+            centreFormationRepository.delete(centreFormation);
+            return "centre supprimé avec succé";
+        }else
+            return "centre n'existe pas";
 
-            centreFormationRepository.deleteById(id);
 
     }
 
     @Override
     public CentreFormation getCentreFormationById(Long id) {
-        return centreFormationRepository.findCentreFormationById(id);
+        return centreFormationRepository.findById(id).orElseThrow(()-> new NoSuchElementException(
+                "NO Centre PRESENT WITH ID = " + id));
     }
 
     @Override
