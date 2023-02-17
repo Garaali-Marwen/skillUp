@@ -43,4 +43,8 @@ public class FormationController {
     }
 
 
+    @GetMapping("/{fid}/formateur/{formateurId}")
+    public Formation addFormateurToFormation(@PathVariable("formateurId") Long formateurId, @PathVariable("fid") Long formationId){
+        return formationService.addFormateurToFormation(formateurId,formationId);
+    }
 }

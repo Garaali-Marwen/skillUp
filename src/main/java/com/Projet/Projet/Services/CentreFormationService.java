@@ -11,4 +11,9 @@ public interface CentreFormationService {
     CentreFormation getCentreFormationById(Long id);
     CentreFormation updateCentreFormation(CentreFormation centreFormation);
 
+    CentreFormation updateCentreFormation(Long cid, CentreFormation centreFormation);
+
+    CentreFormation addOffreToCentreFormation(Long cid, Long oid);
+
+    CentreFormation addAbonnementToCentreFormation(Long aid, Long cid);
 }
