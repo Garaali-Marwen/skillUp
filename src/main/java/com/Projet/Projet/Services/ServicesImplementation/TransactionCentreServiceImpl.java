@@ -59,7 +59,7 @@ public class TransactionCentreServiceImpl implements TransactionCentreService {
         transactionCentre.setCentreFormation(centreFormation);
         updateTransaction(transactionCentre);
         centreFormation.getTransactions().add(transactionCentre);
-        centreFormationService.updateCentreFormation(centreFormation);
+        centreFormationService.updateCentreFormation(centreId,centreFormation);
         return transactionCentre;
     }
 
