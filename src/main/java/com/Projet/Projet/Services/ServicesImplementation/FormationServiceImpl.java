@@ -1,11 +1,11 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
-import com.Projet.Projet.Entities.Client;
+import com.Projet.Projet.Entities.Formateur;
 import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Entities.Seance;
 import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Repositories.FormationRepository;
-import com.Projet.Projet.Services.ClientService;
+import com.Projet.Projet.Services.FormateurService;
 import com.Projet.Projet.Services.FormationService;
 import com.Projet.Projet.Services.SeanceService;
 import lombok.AllArgsConstructor;
@@ -21,6 +21,8 @@ public class FormationServiceImpl implements FormationService {
     private FormationRepository formationRepository;
     private SeanceService seanceService;
     private ClientRepository clientRepository;
+
+    private FormateurService formateurService;
 
 
     @Override
@@ -62,6 +64,21 @@ public class FormationServiceImpl implements FormationService {
         formationRepository.save(formation);
         seance.setFormation(formation);
         seanceService.updateSeance(seance);
+        return formation;
+    }
+
+    @Override
+    public Formation addFormateurToFormation(Long formateurId, Long formationId){
+        Formation formation = getFormationById(formationId);
+        Formateur formateur = formateurService.getFormateurById(formateurId);
+
+        formation.getFormateurs().add(formateur);
+
+        updateFormation(formation);
+
+        formateur.getFormations().add(formation);
+        formateurService.updateFormateur(formateurId,formateur);
+
         return formation;
     }
 

@@ -14,4 +14,5 @@ public interface FormationService {
     Formation addSeanceToFormation(Long seanceId, Long formationId);
 
 
+    Formation addFormateurToFormation(Long formateurId, Long formationId);
 }

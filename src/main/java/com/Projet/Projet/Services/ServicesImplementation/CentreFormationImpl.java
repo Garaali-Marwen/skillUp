@@ -1,17 +1,27 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
+import com.Projet.Projet.Entities.Abonnement;
 import com.Projet.Projet.Entities.CentreFormation;
+import com.Projet.Projet.Entities.Offre;
 import com.Projet.Projet.Repositories.CentreFormationRepository;
+import com.Projet.Projet.Services.AbonnementService;
 import com.Projet.Projet.Services.CentreFormationService;
+import com.Projet.Projet.Services.OffreService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CentreFormationImpl implements CentreFormationService {
-    @Autowired
     private  CentreFormationRepository centreFormationRepository;
+
+    private AbonnementService abonnementService;
+
+    private OffreService offreService;
+
     @Override
     public CentreFormation addCentre(CentreFormation centreFormation) {
         return centreFormationRepository.save(centreFormation);
@@ -32,6 +42,47 @@ public class CentreFormationImpl implements CentreFormationService {
     @Override
     public CentreFormation getCentreFormationById(Long id) {
         return centreFormationRepository.findCentreFormationById(id);
+    }
+
+    @Override
+    public CentreFormation updateCentreFormation(Long cid, CentreFormation centreFormation){
+        CentreFormation centreFormationDB = getCentreFormationById(cid);
+
+        centreFormationDB.setNom(centreFormation.getNom());
+        centreFormationDB.setAdresse(centreFormationDB.getAdresse());
+        centreFormationDB.setRib(centreFormation.getRib());
+        centreFormationDB.setTel(centreFormation.getTel());
+        centreFormationDB.setEmail(centreFormation.getEmail());
+
+        centreFormationRepository.save(centreFormationDB);
+
+        return centreFormationDB;
+    }
+
+    @Override
+    public CentreFormation addOffreToCentreFormation(Long cid, Long oid){
+        CentreFormation centreFormation = getCentreFormationById(cid);
+        Offre offre = offreService.getOfferById(oid);
+
+        centreFormation.getOffres().add(offre);
+        updateCentreFormation(cid,centreFormation);
+
+        offre.setCentreFormation(centreFormation);
+        return centreFormation;
+    }
+
+    @Override
+    public CentreFormation addAbonnementToCentreFormation(Long aid, Long cid){
+        CentreFormation centreFormation = getCentreFormationById(cid);
+        Abonnement abonnement = abonnementService.getAbonnementById(aid);
+
+        centreFormation.getAbonnements().add(abonnement);
+        updateCentreFormation(cid,centreFormation);
+
+        abonnement.setCentreFormation(centreFormation);
+
+        return centreFormation;
+
     }
 
 

@@ -31,4 +31,14 @@ public class CentreFormationController {
     public CentreFormation addCentreFormation(@RequestBody CentreFormation centreFormation){
         return centreFormationService.addCentre(centreFormation);
     }
+
+    @GetMapping("/{cid}/offre/{oid}")
+    public CentreFormation addOffreToCentreFormation (@PathVariable Long cid, @PathVariable Long oid){
+        return centreFormationService.addOffreToCentreFormation(cid,oid);
+    }
+
+    @GetMapping("/{cid}/abonnement/{aid}")
+    public CentreFormation addAbonnementToCentreFormation(@PathVariable Long cid, @PathVariable Long aid){
+        return centreFormationService.addAbonnementToCentreFormation(aid,cid);
+    }
 }

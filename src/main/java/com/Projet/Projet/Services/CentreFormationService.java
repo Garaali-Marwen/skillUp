@@ -10,4 +10,9 @@ public interface CentreFormationService {
     void deleteCentreFormation(Long id) ;
     CentreFormation getCentreFormationById(Long id);
 
+    CentreFormation updateCentreFormation(Long cid, CentreFormation centreFormation);
+
+    CentreFormation addOffreToCentreFormation(Long cid, Long oid);
+
+    CentreFormation addAbonnementToCentreFormation(Long aid, Long cid);
 }
