@@ -54,7 +54,7 @@ public class ManagerServiceImpl implements ManagerService {
         manager.getCentreFormation().add(centreFormation);
         updateManager(manager);
         centreFormation.setManager(manager);
-        centreFormationService.updateCentreFormation(centreFormation);
+        centreFormationService.updateCentreFormation(centreId,centreFormation);
         return manager;
     }
 }
