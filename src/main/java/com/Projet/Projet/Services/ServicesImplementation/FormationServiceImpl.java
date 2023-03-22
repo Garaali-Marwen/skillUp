@@ -1,12 +1,16 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
-import com.Projet.Projet.Entities.Client;
+import com.Projet.Projet.Entities.Formateur;
 import com.Projet.Projet.Entities.Formation;
+import com.Projet.Projet.Entities.Offre;
 import com.Projet.Projet.Entities.Seance;
 import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Repositories.FormationRepository;
+import com.Projet.Projet.Services.FormateurService;
+import com.Projet.Projet.Repositories.OffreRepository;
 import com.Projet.Projet.Services.ClientService;
 import com.Projet.Projet.Services.FormationService;
+import com.Projet.Projet.Services.OffreService;
 import com.Projet.Projet.Services.SeanceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +23,12 @@ import java.util.NoSuchElementException;
 public class FormationServiceImpl implements FormationService {
 
     private FormationRepository formationRepository;
+    //private FormationService formationService;
     private SeanceService seanceService;
     private ClientRepository clientRepository;
+    private OffreService offreService;
+
+    private FormateurService formateurService;
 
 
     @Override
@@ -65,4 +73,31 @@ public class FormationServiceImpl implements FormationService {
         return formation;
     }
 
+    @Override
+    public Formation addFormateurToFormation(Long formateurId, Long formationId){
+        Formation formation = getFormationById(formationId);
+        Formateur formateur = formateurService.getFormateurById(formateurId);
+
+        formation.getFormateurs().add(formateur);
+
+        updateFormation(formation);
+
+        formateur.getFormations().add(formation);
+        formateurService.updateFormateur(formateurId,formateur);
+
+        return formation;
+    }
+
+
+    public Formation addOffreToFormation(Long oid, Long fid){
+        Offre offre = offreService.getOfferById(oid);
+        Formation formation = getFormationById(fid);
+
+        formation.getOffres().add(offre);
+        updateFormation(formation);
+
+        offre.setFormation(formation);
+
+        return formation;
+    }
 }

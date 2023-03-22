@@ -37,5 +37,14 @@ public class FormationController {
     public Formation addSeanceToFormation(@PathVariable("sid") Long seanceId, @PathVariable("fid") Long formationId){
         return formationService.addSeanceToFormation(seanceId,formationId);
     }
+    @GetMapping("/{fid}/offre/{oid}")
+    public Formation addOffreToFormation(@PathVariable Long fid, @PathVariable Long oid){
+        return formationService.addOffreToFormation(oid,fid);
+    }
 
+
+    @GetMapping("/{fid}/formateur/{formateurId}")
+    public Formation addFormateurToFormation(@PathVariable("formateurId") Long formateurId, @PathVariable("fid") Long formationId){
+        return formationService.addFormateurToFormation(formateurId,formationId);
+    }
 }
