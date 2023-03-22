@@ -5,7 +5,7 @@ import com.Projet.Projet.Entities.CentreFormation;
 import java.util.List;
 
 public interface CentreFormationService {
-    String addCentre(CentreFormation centreFormation);
+    CentreFormation addCentre(CentreFormation centreFormation);
     List<CentreFormation> getAllCentreFormation();
     String deleteCentreFormation(Long id) ;
     CentreFormation getCentreFormationById(Long id);

@@ -33,7 +33,7 @@ public class CentreFormationController {
 
 
     @PostMapping("/add")
-    public String addCentreFormation(@RequestBody CentreFormation centreFormation){
+    public CentreFormation addCentreFormation(@RequestBody CentreFormation centreFormation){
         return centreFormationService.addCentre(centreFormation);
     }
 

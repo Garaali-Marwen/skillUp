@@ -1,5 +1,6 @@
 package com.Projet.Projet.Entities;
 
+import com.Projet.Projet.Enum.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,8 +16,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String login;
+    private String email;
     private String mdp;
+    @Enumerated
+    private Role role;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_discussion",
