@@ -1,6 +1,7 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
 import com.Projet.Projet.Entities.Formateur;
+import com.Projet.Projet.Enum.Role;
 import com.Projet.Projet.Repositories.FormateurRespository;
 import com.Projet.Projet.Services.FormateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class FormateurServiceImpl implements FormateurService {
 
     @Override
     public Formateur addFormateur(Formateur formateur) {
+        formateur.setRole(Role.FORMATEUR);
         return formateurRespository.save(formateur);
     }
 

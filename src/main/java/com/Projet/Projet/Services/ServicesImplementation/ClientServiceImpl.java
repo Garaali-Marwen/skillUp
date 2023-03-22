@@ -2,6 +2,7 @@ package com.Projet.Projet.Services.ServicesImplementation;
 
 import com.Projet.Projet.Entities.Client;
 import com.Projet.Projet.Entities.Formation;
+import com.Projet.Projet.Enum.Role;
 import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Services.ClientService;
 import com.Projet.Projet.Services.FormationService;
@@ -20,6 +21,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client addClient(Client client) {
+        client.setRole(Role.CANDIDAT);
         return clientRepository.save(client);
     }
 
