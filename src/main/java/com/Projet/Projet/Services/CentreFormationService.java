@@ -16,4 +16,5 @@ public interface CentreFormationService {
     CentreFormation addOffreToCentreFormation(Long cid, Long oid);
 
     CentreFormation addAbonnementToCentreFormation(Long aid, Long cid);
+    CentreFormation addCategorieToCentreFormation(Long categorieId, Long centreId);
 }

@@ -16,4 +16,6 @@ public class Categorie {
     private String nom;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private List<Formation> formations = new ArrayList<>();
+    @ManyToMany(mappedBy = "categorie")
+    private List<CentreFormation> centreFormations = new ArrayList<>();
 }
