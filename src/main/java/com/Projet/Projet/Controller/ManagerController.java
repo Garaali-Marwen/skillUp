@@ -33,7 +33,7 @@ public class ManagerController {
     public void deleteManager(@PathVariable("id") Long managerId) {
         managerService.deleteManager(managerId);
     }
-    @GetMapping("/center/{cid}/manager/{mid}")
+    @GetMapping("/{mid}/center/{cid}")
     public Manager affectCenterToManager(@PathVariable("cid") Long centerId, @PathVariable("mid") Long managerId) {
         return managerService.affectCenterToManager(centerId, managerId);
     }

@@ -1,10 +1,13 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
 import com.Projet.Projet.Entities.Abonnement;
+import com.Projet.Projet.Entities.Categorie;
 import com.Projet.Projet.Entities.CentreFormation;
 import com.Projet.Projet.Entities.Offre;
+import com.Projet.Projet.Enum.EtatDemandeInscription;
 import com.Projet.Projet.Repositories.CentreFormationRepository;
 import com.Projet.Projet.Services.AbonnementService;
+import com.Projet.Projet.Services.CategorieService;
 import com.Projet.Projet.Services.CentreFormationService;
 import com.Projet.Projet.Services.OffreService;
 import lombok.AllArgsConstructor;
@@ -21,9 +24,11 @@ public class CentreFormationImpl implements CentreFormationService {
     private AbonnementService abonnementService;
 
     private OffreService offreService;
+    private CategorieService categorieService;
 
     @Override
     public CentreFormation addCentre(CentreFormation centreFormation) {
+        centreFormation.setEtatDemandeInscription(EtatDemandeInscription.EN_ATTENTE);
         return centreFormationRepository.save(centreFormation);
 
     }
@@ -89,6 +94,17 @@ public class CentreFormationImpl implements CentreFormationService {
 
         return centreFormation;
 
+    }
+
+    @Override
+    public CentreFormation addCategorieToCentreFormation(Long categorieId, Long centreId) {
+        CentreFormation centreFormation = getCentreFormationById(centreId);
+        Categorie categorie = categorieService.getCategorieById(categorieId);
+        centreFormation.getCategorie().add(categorie);
+        updateCentreFormation(centreId,centreFormation);
+        categorie.getCentreFormations().add(centreFormation);
+        categorieService.updateCategorie(categorie);
+        return centreFormation;
     }
 
 

@@ -51,6 +51,9 @@ public class CentreFormationController {
     public CentreFormation updateCentreFormation(@PathVariable Long cid, @RequestBody CentreFormation centre ){
         return centreFormationService.updateCentreFormation(cid, centre);
     }
-
+    @GetMapping("/{cid}/categorie/{caid}")
+    public CentreFormation addCategorieToCentreFormation(@PathVariable Long cid, @PathVariable Long caid) {
+        return centreFormationService.addCategorieToCentreFormation(caid, cid);
+    }
 
 }
