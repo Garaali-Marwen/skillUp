@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/formation")
+@CrossOrigin
 public class FormationController {
 
     @Autowired
