@@ -1,15 +1,9 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
-import com.Projet.Projet.Entities.Abonnement;
-import com.Projet.Projet.Entities.Categorie;
-import com.Projet.Projet.Entities.CentreFormation;
-import com.Projet.Projet.Entities.Offre;
+import com.Projet.Projet.Entities.*;
 import com.Projet.Projet.Enum.EtatDemandeInscription;
 import com.Projet.Projet.Repositories.CentreFormationRepository;
-import com.Projet.Projet.Services.AbonnementService;
-import com.Projet.Projet.Services.CategorieService;
-import com.Projet.Projet.Services.CentreFormationService;
-import com.Projet.Projet.Services.OffreService;
+import com.Projet.Projet.Services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +14,10 @@ import java.util.NoSuchElementException;
 @AllArgsConstructor
 public class CentreFormationImpl implements CentreFormationService {
     private  CentreFormationRepository centreFormationRepository;
-
     private AbonnementService abonnementService;
-
     private OffreService offreService;
     private CategorieService categorieService;
+    private FormationService formationService;
 
     @Override
     public CentreFormation addCentre(CentreFormation centreFormation) {
@@ -105,6 +98,22 @@ public class CentreFormationImpl implements CentreFormationService {
         categorie.getCentreFormations().add(centreFormation);
         categorieService.updateCategorie(categorie);
         return centreFormation;
+    }
+
+    @Override
+    public CentreFormation addFormationToCentreFormation(Long formationId, Long centreId) {
+        CentreFormation centreFormation = getCentreFormationById(centreId);
+        Formation formation = formationService.getFormationById(formationId);
+        centreFormation.getFormations().add(formation);
+        updateCentreFormation(centreId,centreFormation);
+        formation.setCentreFormation(centreFormation);
+        formationService.updateFormation(formation);
+        return centreFormation;
+    }
+
+    @Override
+    public List<CentreFormation> getAllByManagerId(Long managerId) {
+        return centreFormationRepository.getCentreFormationsByManager_Id(managerId);
     }
 
 
