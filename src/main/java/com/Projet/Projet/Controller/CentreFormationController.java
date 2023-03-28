@@ -55,5 +55,13 @@ public class CentreFormationController {
     public CentreFormation addCategorieToCentreFormation(@PathVariable Long cid, @PathVariable Long caid) {
         return centreFormationService.addCategorieToCentreFormation(caid, cid);
     }
+    @GetMapping("/{cid}/formation/{fid}")
+    public CentreFormation addFormationToCentreFormation(@PathVariable Long cid, @PathVariable Long fid) {
+        return centreFormationService.addFormationToCentreFormation(fid, cid);
+    }
+    @GetMapping("/manager/{id}")
+    public List<CentreFormation> getCentersByManagerId(@PathVariable("id") Long managerId){
+        return centreFormationService.getAllByManagerId(managerId);
+    }
 
 }

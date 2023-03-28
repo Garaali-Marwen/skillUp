@@ -6,7 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CentreFormationRepository extends JpaRepository<CentreFormation, Long> {
-
-
-
+    List<CentreFormation> getCentreFormationsByManager_Id(Long managerId);
 }

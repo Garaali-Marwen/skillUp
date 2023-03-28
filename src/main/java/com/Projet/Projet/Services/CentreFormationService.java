@@ -17,4 +17,7 @@ public interface CentreFormationService {
 
     CentreFormation addAbonnementToCentreFormation(Long aid, Long cid);
     CentreFormation addCategorieToCentreFormation(Long categorieId, Long centreId);
+    CentreFormation addFormationToCentreFormation(Long formationId, Long centreId);
+    List<CentreFormation> getAllByManagerId(Long managerId);
+
 }
