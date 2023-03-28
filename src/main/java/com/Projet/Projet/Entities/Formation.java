@@ -17,11 +17,13 @@ public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String sujet;
-    private String lieu;
+    private String titre;
+    private String description;
+    private String img;
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private double prix;
+    private Integer nbMaxCan;
 
     @ManyToOne
     private CentreFormation centreFormation;
