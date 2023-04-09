@@ -1,6 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,13 +18,16 @@ public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String sujet;
-    private String lieu;
+    private String titre;
+    private String description;
+    private String img;
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private double prix;
+    private Integer nbMaxCan;
 
     @ManyToOne
+    @JsonIgnore
     private CentreFormation centreFormation;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")

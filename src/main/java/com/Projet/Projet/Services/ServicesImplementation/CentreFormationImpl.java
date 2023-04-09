@@ -1,14 +1,10 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
-import com.Projet.Projet.Entities.Abonnement;
-import com.Projet.Projet.Entities.CentreFormation;
-import com.Projet.Projet.Entities.Offre;
+import com.Projet.Projet.Entities.*;
+import com.Projet.Projet.Enum.EtatDemandeInscription;
 import com.Projet.Projet.Repositories.CentreFormationRepository;
-import com.Projet.Projet.Services.AbonnementService;
-import com.Projet.Projet.Services.CentreFormationService;
-import com.Projet.Projet.Services.OffreService;
+import com.Projet.Projet.Services.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,19 +14,15 @@ import java.util.NoSuchElementException;
 @AllArgsConstructor
 public class CentreFormationImpl implements CentreFormationService {
     private  CentreFormationRepository centreFormationRepository;
-
     private AbonnementService abonnementService;
-
     private OffreService offreService;
+    private CategorieService categorieService;
+    private FormationService formationService;
 
     @Override
-    public String addCentre(CentreFormation centreFormation) {
-        CentreFormation centreFormation1 = centreFormationRepository.findById(centreFormation.getId()).orElse(null);
-        if (centreFormation1 == null) {
-            centreFormationRepository.save(centreFormation);
-            return "centre ajouté avec succé";
-        } else
-            return "centre est déja existe";
+    public CentreFormation addCentre(CentreFormation centreFormation) {
+        centreFormation.setEtatDemandeInscription(EtatDemandeInscription.EN_ATTENTE);
+        return centreFormationRepository.save(centreFormation);
 
     }
     @Override
@@ -95,6 +87,33 @@ public class CentreFormationImpl implements CentreFormationService {
 
         return centreFormation;
 
+    }
+
+    @Override
+    public CentreFormation addCategorieToCentreFormation(Long categorieId, Long centreId) {
+        CentreFormation centreFormation = getCentreFormationById(centreId);
+        Categorie categorie = categorieService.getCategorieById(categorieId);
+        centreFormation.getCategorie().add(categorie);
+        updateCentreFormation(centreId,centreFormation);
+        categorie.getCentreFormations().add(centreFormation);
+        categorieService.updateCategorie(categorie);
+        return centreFormation;
+    }
+
+    @Override
+    public CentreFormation addFormationToCentreFormation(Long formationId, Long centreId) {
+        CentreFormation centreFormation = getCentreFormationById(centreId);
+        Formation formation = formationService.getFormationById(formationId);
+        centreFormation.getFormations().add(formation);
+        updateCentreFormation(centreId,centreFormation);
+        formation.setCentreFormation(centreFormation);
+        formationService.updateFormation(formation);
+        return centreFormation;
+    }
+
+    @Override
+    public List<CentreFormation> getAllByManagerId(Long managerId) {
+        return centreFormationRepository.getCentreFormationsByManager_Id(managerId);
     }
 
 

@@ -33,7 +33,7 @@ public class CentreFormationController {
 
 
     @PostMapping("/add")
-    public String addCentreFormation(@RequestBody CentreFormation centreFormation){
+    public CentreFormation addCentreFormation(@RequestBody CentreFormation centreFormation){
         return centreFormationService.addCentre(centreFormation);
     }
 
@@ -51,6 +51,17 @@ public class CentreFormationController {
     public CentreFormation updateCentreFormation(@PathVariable Long cid, @RequestBody CentreFormation centre ){
         return centreFormationService.updateCentreFormation(cid, centre);
     }
-
+    @GetMapping("/{cid}/categorie/{caid}")
+    public CentreFormation addCategorieToCentreFormation(@PathVariable Long cid, @PathVariable Long caid) {
+        return centreFormationService.addCategorieToCentreFormation(caid, cid);
+    }
+    @GetMapping("/{cid}/formation/{fid}")
+    public CentreFormation addFormationToCentreFormation(@PathVariable Long cid, @PathVariable Long fid) {
+        return centreFormationService.addFormationToCentreFormation(fid, cid);
+    }
+    @GetMapping("/manager/{id}")
+    public List<CentreFormation> getCentersByManagerId(@PathVariable("id") Long managerId){
+        return centreFormationService.getAllByManagerId(managerId);
+    }
 
 }

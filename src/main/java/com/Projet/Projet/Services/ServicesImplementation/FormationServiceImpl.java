@@ -74,6 +74,26 @@ public class FormationServiceImpl implements FormationService {
     }
 
     @Override
+    public List<Formation> getFormationByTitre(String titre) {
+        return formationRepository.getFormationByTitre(titre);
+    }
+
+    @Override
+    public List<Formation> getFormationByPrixBetween(double prix1, double prix2) {
+        return formationRepository.getFormationByPrixBetween(prix1, prix2);
+    }
+
+    @Override
+    public List<Formation> getFormationsByCategorie_Id(Long categorieId) {
+        return formationRepository.getFormationsByCategorie_Id(categorieId);
+    }
+
+    @Override
+    public List<Formation> getFormationsByPrixBetweenAndCategorie_Id(double prix1, double prix2, Long categorieId) {
+        return formationRepository.getFormationsByPrixBetweenAndCategorie_Id(prix1, prix2, categorieId);
+    }
+
+    @Override
     public Formation addFormateurToFormation(Long formateurId, Long formationId){
         Formation formation = getFormationById(formationId);
         Formateur formateur = formateurService.getFormateurById(formateurId);
