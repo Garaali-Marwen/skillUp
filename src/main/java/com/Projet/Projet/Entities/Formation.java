@@ -1,6 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class Formation {
     private Integer nbMaxCan;
 
     @ManyToOne
+    @JsonIgnore
     private CentreFormation centreFormation;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
