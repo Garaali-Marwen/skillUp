@@ -1,5 +1,6 @@
 package com.Projet.Projet.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,7 +15,9 @@ public class DemandeInscription {
     private Long id;
     private LocalDate date;
     @ManyToOne
+    @JsonManagedReference
     private Client client;
     @ManyToOne
+    @JsonManagedReference
     private Formation formation;
 }

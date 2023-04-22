@@ -1,5 +1,6 @@
 package com.Projet.Projet.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,5 +18,6 @@ public class Message {
     private LocalDate date;
     private String heure;
     @ManyToOne
+    @JsonManagedReference
     private User user;
 }

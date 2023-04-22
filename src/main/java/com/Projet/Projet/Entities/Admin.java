@@ -1,5 +1,6 @@
 package com.Projet.Projet.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -13,8 +14,9 @@ import java.util.List;
 public class Admin extends User{
 
 
-    private String nom;//ali test
+    private String nom;
     private String prenom;
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Notification> notifications = new ArrayList<>();
 }

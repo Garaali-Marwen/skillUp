@@ -6,9 +6,8 @@ import com.Projet.Projet.Entities.Offre;
 import com.Projet.Projet.Entities.Seance;
 import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Repositories.FormationRepository;
+import com.Projet.Projet.Repositories.TagRepository;
 import com.Projet.Projet.Services.FormateurService;
-import com.Projet.Projet.Repositories.OffreRepository;
-import com.Projet.Projet.Services.ClientService;
 import com.Projet.Projet.Services.FormationService;
 import com.Projet.Projet.Services.OffreService;
 import com.Projet.Projet.Services.SeanceService;
@@ -27,7 +26,7 @@ public class FormationServiceImpl implements FormationService {
     private SeanceService seanceService;
     private ClientRepository clientRepository;
     private OffreService offreService;
-
+    private TagRepository tagRepository;
     private FormateurService formateurService;
 
 
@@ -58,6 +57,7 @@ public class FormationServiceImpl implements FormationService {
     @Override
     public void deleteFormation(Long formationId) {
         Formation formation = getFormationById(formationId);
+        tagRepository.getTagsByFormations_Id(formationId).forEach(tag -> tag.getFormations().remove(formation));
         clientRepository.findClientsByFormations_Id(formationId).forEach(client -> client.getFormations().remove(formation));
         formationRepository.deleteById(formationId);
     }
@@ -94,7 +94,22 @@ public class FormationServiceImpl implements FormationService {
     }
 
     @Override
-    public Formation addFormateurToFormation(Long formateurId, Long formationId){
+    public List<Formation> getFormationByTag(String tag) {
+        return formationRepository.getFormationByTags_Nom(tag);
+    }
+
+    @Override
+    public List<Formation> getFormationsByCentreFormation_Id(Long centerId) {
+        return formationRepository.getFormationsByCentreFormation_Id(centerId);
+    }
+
+    @Override
+    public List<Formation> getFormationsByTagNameOrTitle(String param) {
+        return formationRepository.findByTagNameOrTitle(param);
+    }
+
+    @Override
+    public Formation addFormateurToFormation(Long formateurId, Long formationId) {
         Formation formation = getFormationById(formationId);
         Formateur formateur = formateurService.getFormateurById(formateurId);
 
@@ -103,13 +118,13 @@ public class FormationServiceImpl implements FormationService {
         updateFormation(formation);
 
         formateur.getFormations().add(formation);
-        formateurService.updateFormateur(formateurId,formateur);
+        formateurService.updateFormateur(formateurId, formateur);
 
         return formation;
     }
 
 
-    public Formation addOffreToFormation(Long oid, Long fid){
+    public Formation addOffreToFormation(Long oid, Long fid) {
         Offre offre = offreService.getOfferById(oid);
         Formation formation = getFormationById(fid);
 

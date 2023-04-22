@@ -1,7 +1,6 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -13,12 +12,12 @@ import java.util.List;
 
 @Entity
 @Data
-@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class)
 public class Manager extends User {
     private String nom;
     private String prenom;
     private LocalDate dateNaissance;
     private int tel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager")
+    @JsonBackReference
     private List<CentreFormation> centreFormation = new ArrayList<>();
 }
