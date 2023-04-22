@@ -1,6 +1,5 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,9 +15,7 @@ public class TransactionCentre {
     private LocalDate date;
     private String heure;
     @OneToOne(mappedBy = "transaction")
-    @JsonManagedReference
     private Abonnement abonnement;
     @ManyToOne
-    @JsonManagedReference
     private CentreFormation centreFormation;
 }

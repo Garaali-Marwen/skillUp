@@ -1,7 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.Role;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,9 +26,8 @@ public class User {
             name = "user_discussion",
             joinColumns =  @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "discussion_id", referencedColumnName = "id"))
-    @JsonBackReference
+    @JsonIgnore
     private List<Discussion> discussions = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonBackReference
     private List<Message> messages = new ArrayList<>();
 }

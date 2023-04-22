@@ -1,6 +1,5 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +20,5 @@ public class Tag {
             name = "tag_formation",
             joinColumns =  @JoinColumn(name = "tag_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "formation_id", referencedColumnName = "id"))
-    @JsonManagedReference
     private List<Formation> formations = new ArrayList<>();
 }

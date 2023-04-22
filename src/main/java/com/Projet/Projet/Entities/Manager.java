@@ -1,6 +1,6 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -18,6 +18,6 @@ public class Manager extends User {
     private LocalDate dateNaissance;
     private int tel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager")
-    @JsonBackReference
+    @JsonIgnore
     private List<CentreFormation> centreFormation = new ArrayList<>();
 }
