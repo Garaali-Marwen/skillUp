@@ -9,16 +9,18 @@ import java.util.List;
 
 @Entity
 @Data
-public class Categorie {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String nom;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
+    @ManyToMany
+    @JoinTable(
+            name = "tag_formation",
+            joinColumns =  @JoinColumn(name = "tag_id", referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name = "formation_id", referencedColumnName = "id"))
     @JsonManagedReference
     private List<Formation> formations = new ArrayList<>();
-    @ManyToMany(mappedBy = "categorie")
-    @JsonManagedReference
-    private List<CentreFormation> centreFormations = new ArrayList<>();
 }

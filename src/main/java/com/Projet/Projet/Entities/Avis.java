@@ -1,5 +1,7 @@
 package com.Projet.Projet.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,7 +18,9 @@ public class Avis {
     private int note;
     private LocalDate date;
     @ManyToOne
+    @JsonBackReference
     private Formation formation;
     @ManyToOne
+    @JsonManagedReference
     private Client client;
 }

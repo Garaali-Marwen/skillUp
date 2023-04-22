@@ -1,8 +1,8 @@
 package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.TypeAbonnement;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class Abonnement {
 
     @Id
@@ -21,8 +20,10 @@ public class Abonnement {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     @ManyToOne
+    @JsonManagedReference
     private CentreFormation centreFormation;
     @OneToOne
+    @JsonBackReference
     private TransactionCentre transaction;
 
 }

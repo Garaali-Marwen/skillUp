@@ -1,8 +1,7 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Data
-@JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class Formation {
 
     @Id
@@ -27,16 +25,19 @@ public class Formation {
     private Integer nbMaxCan;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     private CentreFormation centreFormation;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonManagedReference
     private List<Avis> avis = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonManagedReference
     private List<Offre> offres = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonManagedReference
     private List<Seance> seances = new ArrayList<>();
 
     @ManyToMany()
@@ -44,22 +45,30 @@ public class Formation {
             name = "formation_formateur",
             joinColumns =  @JoinColumn(name = "formation_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "formateur_id", referencedColumnName = "id"))
+    @JsonManagedReference
     private List<Formateur> formateurs = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonManagedReference
     private List<Sponsoring> sponsorings;
 
     @ManyToOne
+    @JsonBackReference
     private Categorie categorie;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonBackReference
     private List<DemandeInscription> demandes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonBackReference
     private List<TransactionClient> transactionClients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "formations")
+    @JsonBackReference
     private List<Client> clients = new ArrayList<>();
 
-
+    @ManyToMany(mappedBy = "formations")
+    @JsonBackReference
+    private List<Tag> tags = new ArrayList<>();
 }
