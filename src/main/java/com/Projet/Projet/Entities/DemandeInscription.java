@@ -15,9 +15,7 @@ public class DemandeInscription {
     private Long id;
     private LocalDate date;
     @ManyToOne
-    @JsonManagedReference
     private Client client;
     @ManyToOne
-    @JsonManagedReference
     private Formation formation;
 }

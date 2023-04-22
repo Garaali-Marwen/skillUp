@@ -16,9 +16,7 @@ public class TransactionCentre {
     private LocalDate date;
     private String heure;
     @OneToOne(mappedBy = "transaction")
-    @JsonManagedReference
     private Abonnement abonnement;
     @ManyToOne
-    @JsonManagedReference
     private CentreFormation centreFormation;
 }

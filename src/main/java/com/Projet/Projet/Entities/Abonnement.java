@@ -2,6 +2,7 @@ package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.TypeAbonnement;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,10 +21,9 @@ public class Abonnement {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     @ManyToOne
-    @JsonManagedReference
     private CentreFormation centreFormation;
     @OneToOne
-    @JsonBackReference
+    @JsonIgnore
     private TransactionCentre transaction;
 
 }

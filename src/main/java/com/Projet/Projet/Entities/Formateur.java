@@ -1,6 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +15,6 @@ public class Formateur extends User{
     private String prenom;
     private String photo;
     @ManyToMany(mappedBy = "formateurs")
-    @JsonBackReference
+    @JsonIgnore
     private List<Formation> formations = new ArrayList<>();
 }

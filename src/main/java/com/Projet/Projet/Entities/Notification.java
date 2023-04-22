@@ -19,13 +19,10 @@ public class Notification {
     @Enumerated
     private EtatNotification etat;
     @ManyToOne
-    @JsonManagedReference
     private Client client;
     @ManyToOne
-    @JsonManagedReference
     private CentreFormation centreFormation;
     @ManyToOne
-    @JsonManagedReference
     private Admin admin;
 
 }

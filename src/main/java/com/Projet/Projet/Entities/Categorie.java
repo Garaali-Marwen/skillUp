@@ -16,9 +16,7 @@ public class Categorie {
     private Long id;
     private String nom;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
-    @JsonManagedReference
     private List<Formation> formations = new ArrayList<>();
     @ManyToMany(mappedBy = "categorie")
-    @JsonManagedReference
     private List<CentreFormation> centreFormations = new ArrayList<>();
 }

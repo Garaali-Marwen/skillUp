@@ -2,6 +2,7 @@ package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.EtatDemandeInscription;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -30,31 +31,29 @@ public class CentreFormation {
             name = "centre_categorie",
             joinColumns =  @JoinColumn(name = "centre_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "categorie_id", referencedColumnName = "id"))
-    @JsonBackReference
+    @JsonIgnore
     private List<Categorie> categorie = new ArrayList<>();
     @Column(columnDefinition="TEXT",length = 5000)
     private String description;
     @Enumerated
     private EtatDemandeInscription etatDemandeInscription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "centreFormation")
-    @JsonManagedReference
     private List<Formation> formations = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "centreFormation")
-    @JsonBackReference
+    @JsonIgnore
     private List<Abonnement> abonnements = new ArrayList<>();
 
     @OneToMany
-    @JsonBackReference
+    @JsonIgnore
     private List<Offre> offres = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private List<TransactionCentre> transactions = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "centreFormation")
-    @JsonBackReference
+    @JsonIgnore
     private List<Notification> notifications = new ArrayList<>();
     @ManyToOne
-    @JsonManagedReference
     private Manager manager;
 }

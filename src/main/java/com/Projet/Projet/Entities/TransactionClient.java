@@ -17,9 +17,7 @@ public class TransactionClient {
     private String heure;
     private double valeur;
     @ManyToOne
-    @JsonManagedReference
     private Client client;
     @ManyToOne
-    @JsonManagedReference
     private Formation formation;
 }

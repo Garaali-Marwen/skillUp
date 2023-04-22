@@ -1,6 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,6 @@ public class Seance {
     private String heureDebut;
     private String heureFin;
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnore
     private Formation formation;
 }

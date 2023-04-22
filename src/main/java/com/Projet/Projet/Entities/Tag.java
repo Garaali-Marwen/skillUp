@@ -21,6 +21,5 @@ public class Tag {
             name = "tag_formation",
             joinColumns =  @JoinColumn(name = "tag_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "formation_id", referencedColumnName = "id"))
-    @JsonManagedReference
     private List<Formation> formations = new ArrayList<>();
 }

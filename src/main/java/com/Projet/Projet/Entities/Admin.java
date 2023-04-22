@@ -1,6 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -17,6 +18,6 @@ public class Admin extends User{
     private String nom;
     private String prenom;
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private List<Notification> notifications = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,18 +25,17 @@ public class Client extends User{
             name = "client_formation",
             joinColumns =  @JoinColumn(name = "client_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "formation_id", referencedColumnName = "id"))
-    @JsonManagedReference
     private List<Formation> formations = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
-    @JsonBackReference
+    @JsonIgnore
     private List<DemandeInscription> demandeInscriptions = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
-    @JsonBackReference
+    @JsonIgnore
     private List<TransactionClient> transactions = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
-    @JsonBackReference
+    @JsonIgnore
     private List<Avis> avis = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
-    @JsonBackReference
+    @JsonIgnore
     private List<Notification> notifications = new ArrayList<>();
 }
