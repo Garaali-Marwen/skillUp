@@ -1,7 +1,6 @@
 package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.EtatSponsoring;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,7 +1,6 @@
 package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.EtatNotification;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
