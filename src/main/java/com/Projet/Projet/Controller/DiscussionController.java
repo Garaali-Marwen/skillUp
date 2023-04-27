@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/discussion")
+@CrossOrigin(origins = "*")
 public class DiscussionController {
     @Autowired
     private DiscussionService discussionService;

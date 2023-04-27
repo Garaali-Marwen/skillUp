@@ -1,9 +1,6 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
-import com.Projet.Projet.Entities.Formateur;
-import com.Projet.Projet.Entities.Formation;
-import com.Projet.Projet.Entities.Offre;
-import com.Projet.Projet.Entities.Seance;
+import com.Projet.Projet.Entities.*;
 import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Repositories.FormationRepository;
 import com.Projet.Projet.Repositories.TagRepository;
@@ -11,6 +8,7 @@ import com.Projet.Projet.Services.FormateurService;
 import com.Projet.Projet.Services.FormationService;
 import com.Projet.Projet.Services.OffreService;
 import com.Projet.Projet.Services.SeanceService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,11 +45,20 @@ public class FormationServiceImpl implements FormationService {
     }
 
     @Override
-    public Formation updateFormation(Formation formation) {
-        if (!formationRepository.existsById(formation.getId())) {
-            throw new NoSuchElementException("Aucune formation avec ID : " + formation.getId());
+    @Transactional
+    public Formation updateFormation(Formation formationUpdate) {
+        if (!formationRepository.existsById(formationUpdate.getId())) {
+            throw new NoSuchElementException("Aucune formation avec ID : " + formationUpdate.getId());
         }
-        return formationRepository.save(formation);
+        Formation formation = formationRepository.findById(formationUpdate.getId()).get();
+        formation.setDateDebut(formationUpdate.getDateDebut());
+        formation.setDateFin(formationUpdate.getDateFin());
+        formation.setTitre(formationUpdate.getTitre());
+        formation.setPrix(formationUpdate.getPrix());
+        formation.setNbMaxCan(formationUpdate.getNbMaxCan());
+        formation.setDescription(formationUpdate.getDescription());
+        formation.setImg(formationUpdate.getImg());
+        return formation;
     }
 
     @Override
@@ -106,6 +113,17 @@ public class FormationServiceImpl implements FormationService {
     @Override
     public List<Formation> getFormationsByTagNameOrTitle(String param) {
         return formationRepository.findByTagNameOrTitle(param);
+    }
+
+    @Override
+    public Formation removeTagFromFormation(Long tagId, Long formationId) {
+        Formation formation = getFormationById(formationId);
+        Tag tag = tagRepository.findById(tagId).orElse(null);
+        formation.getTags().remove(tag);
+        tag.getFormations().remove(formation);
+        formationRepository.save(formation);
+        tagRepository.save(tag);
+        return formation;
     }
 
     @Override

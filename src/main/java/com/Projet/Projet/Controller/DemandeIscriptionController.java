@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/demande")
+@CrossOrigin(origins = "*")
 public class DemandeIscriptionController {
     @Autowired
     private DemandeInscriptionService demandeInscriptionService;

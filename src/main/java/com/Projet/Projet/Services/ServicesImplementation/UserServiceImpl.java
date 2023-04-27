@@ -1,24 +1,37 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
+import com.Projet.Projet.Configuration.AuthenticationRequest;
+import com.Projet.Projet.Configuration.AuthenticationResponse;
+import com.Projet.Projet.Configuration.JwtService;
 import com.Projet.Projet.Entities.User;
 import com.Projet.Projet.Repositories.UserRepository;
 import com.Projet.Projet.Services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
+
 
     @Override
-    public User login(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            if (user.getMdp().equals(password)) {
-                return user;
-            }
-        }
-        return null;
+    public AuthenticationResponse login(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword())
+        );
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
     }
 }

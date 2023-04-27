@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/CentreFormation")
+@CrossOrigin(origins = "*")
 public class CentreFormationController {
     @Autowired
     private CentreFormationService centreFormationService;
@@ -42,7 +43,7 @@ public class CentreFormationController {
         String orgFileName = StringUtils.cleanPath(image.getOriginalFilename());
         String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
         String fileName = "training-center-" + centreFormation1.getId() + ext;
-        String uploadDir = "D:\\\\Projets Developpement\\\\Projet S2\\\\SkillUp-FE\\\\src\\\\assets\\trainingCenter-photos";
+        String uploadDir = "../SkillUp-FE/src/assets/trainingCenter-photos";
         ImageUpload.saveFile(uploadDir, fileName, image);
         centreFormation1.setLogo(fileName);
         return centreFormationService.addCentre(centreFormation1);
