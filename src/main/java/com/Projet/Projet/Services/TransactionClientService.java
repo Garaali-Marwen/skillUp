@@ -8,9 +8,12 @@ public interface TransactionClientService {
 
     TransactionClient addTransactionClient(TransactionClient transactionClient);
     List<TransactionClient> getAllTransactions();
+    List<TransactionClient> getTransactionsByClientId(Long clientId);
     TransactionClient getTransactionClientById(Long transactionId);
     TransactionClient updateTransactionClient(TransactionClient transactionClient);
     void deleteTransactionClient(Long transactionId);
     TransactionClient addTransactionToClient(Long clientId, Long transactionId);
     TransactionClient addTransactionToFormation(Long formationId, Long transactionId);
+
+
 }

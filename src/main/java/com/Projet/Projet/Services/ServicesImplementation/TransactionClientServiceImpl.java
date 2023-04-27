@@ -35,6 +35,11 @@ public class TransactionClientServiceImpl implements TransactionClientService {
     }
 
     @Override
+    public List<TransactionClient> getTransactionsByClientId(Long clientId) {
+        return transactionClientRepository.findTransactionClientByClient_Id(clientId);
+    }
+
+    @Override
     public TransactionClient getTransactionClientById(Long transactionId) {
         return transactionClientRepository.findById(transactionId).orElseThrow(
                 () -> new NoSuchElementException("Acune transaction client avec ID: " + transactionId)

@@ -23,6 +23,11 @@ public class TransactionClientController {
     public TransactionClient getTransactionClientById(@PathVariable("id") Long transactionId){
         return transactionClientService.getTransactionClientById(transactionId);
     }
+
+    @GetMapping("/transactions/{id}")
+    public List<TransactionClient> getTransactionsByClientId(@PathVariable("id") Long clientId){
+        return transactionClientService.getTransactionsByClientId(clientId);
+    }
     @PostMapping("/add")
     public TransactionClient addTransactionClient(@RequestBody TransactionClient transactionClient){
         return transactionClientService.addTransactionClient(transactionClient);
