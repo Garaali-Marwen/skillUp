@@ -1,18 +1,17 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
-@JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class Formation {
 
     @Id
@@ -53,13 +52,17 @@ public class Formation {
     private Categorie categorie;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonIgnore
     private List<DemandeInscription> demandes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
+    @JsonIgnore
     private List<TransactionClient> transactionClients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "formations")
+    @JsonIgnore
     private List<Client> clients = new ArrayList<>();
 
-
+    @ManyToMany(mappedBy = "formations")
+    private Set<Tag> tags = new HashSet<>();
 }

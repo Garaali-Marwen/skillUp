@@ -7,6 +7,7 @@ import com.Projet.Projet.Repositories.ManagerRepository;
 import com.Projet.Projet.Services.CentreFormationService;
 import com.Projet.Projet.Services.ManagerService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +18,11 @@ import java.util.NoSuchElementException;
 public class ManagerServiceImpl implements ManagerService {
     private ManagerRepository managerRepository;
     private CentreFormationService centreFormationService;
+    private PasswordEncoder passwordEncoder;
     @Override
     public Manager addManager(Manager manager) {
         manager.setRole(Role.MANAGER);
+        manager.setMdp(passwordEncoder.encode(manager.getMdp()));
         return managerRepository.save(manager);
     }
 

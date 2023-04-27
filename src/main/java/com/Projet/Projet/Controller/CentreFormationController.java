@@ -1,15 +1,20 @@
 package com.Projet.Projet.Controller;
 
+import com.Projet.Projet.Configuration.ImageUpload;
 import com.Projet.Projet.Entities.CentreFormation;
+import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Services.CentreFormationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/CentreFormation")
+@CrossOrigin(origins = "*")
 public class CentreFormationController {
     @Autowired
     private CentreFormationService centreFormationService;
@@ -31,10 +36,17 @@ public class CentreFormationController {
         return centreFormationService.deleteCentreFormation(id) ;
     }
 
-
     @PostMapping("/add")
-    public CentreFormation addCentreFormation(@RequestBody CentreFormation centreFormation){
-        return centreFormationService.addCentre(centreFormation);
+    public CentreFormation addCentreFormation(@RequestPart("centre") CentreFormation centreFormation,
+                                  @RequestPart("image") MultipartFile image) {
+        CentreFormation centreFormation1 = centreFormationService.addCentre(centreFormation);
+        String orgFileName = StringUtils.cleanPath(image.getOriginalFilename());
+        String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
+        String fileName = "training-center-" + centreFormation1.getId() + ext;
+        String uploadDir = "../SkillUp-FE/src/assets/trainingCenter-photos";
+        ImageUpload.saveFile(uploadDir, fileName, image);
+        centreFormation1.setLogo(fileName);
+        return centreFormationService.addCentre(centreFormation1);
     }
 
     @GetMapping("/{cid}/offre/{oid}")
@@ -64,4 +76,4 @@ public class CentreFormationController {
         return centreFormationService.getAllByManagerId(managerId);
     }
 
-}
+    }

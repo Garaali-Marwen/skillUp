@@ -1,8 +1,10 @@
 package com.Projet.Projet.Services;
 
-import com.Projet.Projet.Entities.User;
+import com.Projet.Projet.Configuration.AuthenticationRequest;
+import com.Projet.Projet.Configuration.AuthenticationResponse;
 
-public interface UserService {
+public interface UserService{
 
-    User login(String email, String password);
+    AuthenticationResponse login(AuthenticationRequest request);
+
 }

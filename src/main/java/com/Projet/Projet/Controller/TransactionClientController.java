@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transaction/client")
+@CrossOrigin(origins = "*")
 public class TransactionClientController {
 
     @Autowired

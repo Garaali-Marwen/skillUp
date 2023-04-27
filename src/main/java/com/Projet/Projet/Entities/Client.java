@@ -1,7 +1,6 @@
 package com.Projet.Projet.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Data
-@JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class Client extends User{
 
     private String nom;
@@ -27,11 +25,15 @@ public class Client extends User{
             inverseJoinColumns =  @JoinColumn(name = "formation_id", referencedColumnName = "id"))
     private List<Formation> formations = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
+    @JsonIgnore
     private List<DemandeInscription> demandeInscriptions = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
+    @JsonIgnore
     private List<TransactionClient> transactions = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
+    @JsonIgnore
     private List<Avis> avis = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "client")
+    @JsonIgnore
     private List<Notification> notifications = new ArrayList<>();
 }

@@ -1,8 +1,7 @@
 package com.Projet.Projet.Entities;
 
 import com.Projet.Projet.Enum.EtatDemandeInscription;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Data
-@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class)
 public class CentreFormation {
 
     @Id
@@ -40,16 +38,19 @@ public class CentreFormation {
     private List<Formation> formations = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "centreFormation")
+    @JsonIgnore
     private List<Abonnement> abonnements = new ArrayList<>();
 
     @OneToMany
+    @JsonIgnore
     private List<Offre> offres = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<TransactionCentre> transactions = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "centreFormation")
+    @JsonIgnore
     private List<Notification> notifications = new ArrayList<>();
     @ManyToOne
     private Manager manager;
-    //transaction sponsoring, transaction client,
 }

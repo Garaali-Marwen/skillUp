@@ -1,5 +1,6 @@
 package com.Projet.Projet.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class Offre {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     @ManyToOne
+    @JsonIgnore
     private Formation formation;
     @ManyToOne
     private CentreFormation centreFormation;
