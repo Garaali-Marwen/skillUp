@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/manager")
+@CrossOrigin(origins = "*")
 public class ManagerController {
     @Autowired
     private ManagerService managerService;

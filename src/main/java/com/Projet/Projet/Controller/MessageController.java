@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/message")
+@CrossOrigin(origins = "*")
 public class MessageController {
     @Autowired
     private MessageService messageService;

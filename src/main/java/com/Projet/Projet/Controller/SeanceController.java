@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/seance")
+@CrossOrigin(origins = "*")
 public class SeanceController {
     @Autowired
     private SeanceService seanceService;

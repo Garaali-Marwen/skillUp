@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/abonnement")
+@CrossOrigin(origins = "*")
 public class AbonnementController {
 
     @Autowired

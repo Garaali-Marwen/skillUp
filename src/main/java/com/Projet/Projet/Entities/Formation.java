@@ -6,7 +6,9 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -47,7 +49,6 @@ public class Formation {
     private List<Sponsoring> sponsorings;
 
     @ManyToOne
-    @JsonIgnore
     private Categorie categorie;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")
@@ -63,6 +64,5 @@ public class Formation {
     private List<Client> clients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "formations")
-    @JsonIgnore
-    private List<Tag> tags = new ArrayList<>();
+    private Set<Tag> tags = new HashSet<>();
 }

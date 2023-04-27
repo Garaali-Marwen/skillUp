@@ -29,7 +29,6 @@ public class CentreFormation {
             name = "centre_categorie",
             joinColumns =  @JoinColumn(name = "centre_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "categorie_id", referencedColumnName = "id"))
-    @JsonIgnore
     private List<Categorie> categorie = new ArrayList<>();
     @Column(columnDefinition="TEXT",length = 5000)
     private String description;

@@ -19,6 +19,7 @@ public interface FormationService {
     List<Formation> getFormationByTag(String tag);
     List<Formation> getFormationsByCentreFormation_Id(Long centerId);
     List<Formation> getFormationsByTagNameOrTitle(String param);
+    Formation removeTagFromFormation(Long tagId, Long formationId);
 
     Formation addFormateurToFormation(Long formateurId, Long formationId);
     Formation addOffreToFormation(Long oid, Long formationId);

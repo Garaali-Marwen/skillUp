@@ -1,5 +1,6 @@
 package com.Projet.Projet.Services.ServicesImplementation;
 
+import com.Projet.Projet.Configuration.JwtService;
 import com.Projet.Projet.Entities.Client;
 import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Enum.Role;
@@ -7,6 +8,7 @@ import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Services.ClientService;
 import com.Projet.Projet.Services.FormationService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,13 @@ public class ClientServiceImpl implements ClientService {
 
     private ClientRepository clientRepository;
     private FormationService formationService;
+    private PasswordEncoder passwordEncoder;
+    private JwtService jwtService;
 
     @Override
     public Client addClient(Client client) {
         client.setRole(Role.CANDIDAT);
+        client.setMdp(passwordEncoder.encode(client.getMdp()));
         return clientRepository.save(client);
     }
 

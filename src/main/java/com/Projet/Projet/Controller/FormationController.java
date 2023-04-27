@@ -35,15 +35,29 @@ public class FormationController {
         String orgFileName = StringUtils.cleanPath(image.getOriginalFilename());
         String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
         String fileName = "training-" + formation1.getId() + ext;
-        String uploadDir = "D:\\\\Projets Developpement\\\\Projet S2\\\\SkillUp-FE\\\\src\\\\assets\\training-photos";
+        String uploadDir = "../SkillUp-FE/src/assets/training-photos";
         ImageUpload.saveFile(uploadDir, fileName, image);
         formation1.setImg(fileName);
         return formationService.addFormation(formation1);
     }
 
     @PutMapping("/update")
-    public Formation updateFormation(@RequestBody Formation formation) {
+    public Formation updateFormation(@RequestPart("formation") Formation formation,
+                                     @RequestPart("image") MultipartFile image) {
+        String orgFileName = StringUtils.cleanPath(image.getOriginalFilename());
+        if (!orgFileName.equals("")){
+            String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
+            String fileName = "training-" + formation.getId() + ext;
+            String uploadDir = "../SkillUp-FE/src/assets/training-photos";
+            ImageUpload.saveFile(uploadDir, fileName, image);
+            formation.setImg(fileName);
+        }
         return formationService.updateFormation(formation);
+    }
+
+    @GetMapping("/{idf}/tag/{idt}")
+    public Formation removeTagFromFormation(@PathVariable("idt") Long tagId,@PathVariable("idf") Long formationId){
+        return formationService.removeTagFromFormation(tagId, formationId);
     }
 
     @GetMapping("/center/{id}")

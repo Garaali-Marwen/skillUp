@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tag")
+@CrossOrigin(origins = "*")
 public class TagController {
 
     @Autowired
