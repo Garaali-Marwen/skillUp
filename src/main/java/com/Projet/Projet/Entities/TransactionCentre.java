@@ -14,6 +14,7 @@ public class TransactionCentre {
     private Long id;
     private LocalDate date;
     private String heure;
+    private double valeur;
     @OneToOne(mappedBy = "transaction")
     private Abonnement abonnement;
     @ManyToOne

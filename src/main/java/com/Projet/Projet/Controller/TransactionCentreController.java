@@ -42,4 +42,9 @@ public class TransactionCentreController {
     public TransactionCentre addTransactionToAbonnement(@PathVariable("aid") Long abonnementId, @PathVariable("tid") Long transactionId){
         return transactionCentreService.addTransactionToAbonnement(abonnementId,transactionId);
     }
+
+    @GetMapping("/manager/{id}")
+    public List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(@PathVariable("id") Long managerId){
+        return transactionCentreService.getTransactionCentresByCentreFormation_Manager_Id(managerId);
+    }
 }
