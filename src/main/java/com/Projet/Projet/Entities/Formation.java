@@ -18,6 +18,7 @@ public class Formation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String titre;
+    @Column(columnDefinition="TEXT",length = 5000)
     private String description;
     private String img;
     private LocalDate dateDebut;
@@ -49,6 +50,7 @@ public class Formation {
     private List<Sponsoring> sponsorings;
 
     @ManyToOne
+    @JsonIgnore
     private Categorie categorie;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "formation")

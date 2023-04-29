@@ -16,7 +16,6 @@ public class Categorie {
     private Long id;
     private String nom;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
-    @JsonIgnore
     private List<Formation> formations = new ArrayList<>();
     @ManyToMany(mappedBy = "categorie")
     @JsonIgnore

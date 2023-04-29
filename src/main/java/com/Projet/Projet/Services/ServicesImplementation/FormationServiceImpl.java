@@ -127,6 +127,21 @@ public class FormationServiceImpl implements FormationService {
     }
 
     @Override
+    public List<Formation> getFormationsByCategorie_Nom(String nom) {
+        return formationRepository.getFormationsByCategorie_Nom(nom);
+    }
+
+    @Override
+    public List<Formation> findFirst10ByOrderByIdDesc() {
+        return formationRepository.findFirst10ByOrderByIdDesc();
+    }
+
+    @Override
+    public List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(String categoryName) {
+        return formationRepository.findFirst10ByCategorie_NomOrderByIdDesc(categoryName);
+    }
+
+    @Override
     public Formation addFormateurToFormation(Long formateurId, Long formationId) {
         Formation formation = getFormationById(formationId);
         Formateur formateur = formateurService.getFormateurById(formateurId);

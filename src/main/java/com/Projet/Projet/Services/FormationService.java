@@ -20,6 +20,10 @@ public interface FormationService {
     List<Formation> getFormationsByCentreFormation_Id(Long centerId);
     List<Formation> getFormationsByTagNameOrTitle(String param);
     Formation removeTagFromFormation(Long tagId, Long formationId);
+    List<Formation> getFormationsByCategorie_Nom(String nom);
+    List<Formation> findFirst10ByOrderByIdDesc();
+    List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(String categoryName);
+
 
     Formation addFormateurToFormation(Long formateurId, Long formationId);
     Formation addOffreToFormation(Long oid, Long formationId);

@@ -12,4 +12,7 @@ public interface CategorieService {
     void deleteCategorie(Long categorieId);
     Categorie updateCategorie(Categorie categorie);
     Categorie addFormationToCategorie(Long formationId, Long categorieId);
+    Categorie getCategorieByNom(String nom);
+    Categorie getCategorieByFormations_Id(Long id);
+
 }

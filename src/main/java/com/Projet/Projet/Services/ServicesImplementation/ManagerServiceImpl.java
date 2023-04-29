@@ -6,6 +6,7 @@ import com.Projet.Projet.Enum.Role;
 import com.Projet.Projet.Repositories.ManagerRepository;
 import com.Projet.Projet.Services.CentreFormationService;
 import com.Projet.Projet.Services.ManagerService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,11 +44,18 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
+    @Transactional
     public Manager updateManager(Manager manager) {
         if (!managerRepository.existsById(manager.getId())){
             throw new NoSuchElementException("Aucun manager avec ID: " + manager.getId());
         }
-        return managerRepository.save(manager);
+        Manager managerUpdated = getManagerById(manager.getId());
+        managerUpdated.setNom(manager.getNom());
+        managerUpdated.setPrenom(manager.getPrenom());
+        managerUpdated.setTel(manager.getTel());
+        managerUpdated.setDateNaissance(manager.getDateNaissance());
+        managerUpdated.setEmail(manager.getEmail());
+        return managerUpdated;
     }
 
     @Override
