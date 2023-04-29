@@ -29,7 +29,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/user/authenticate", "/api/client/add", "/api/CentreFormation/add",
                         "/api/formation", "/api/tag", "/api/CentreFormation", "/api/manager/add",
-                        "/api/offre", "/api/formateur", "/api/categorie", "/api/manager/{mid}/center/{cid}")
+                        "/api/offre", "/api/formateur", "/api/categorie", "/api/manager/{mid}/center/{cid}",
+                        "/api/formation/{id}", "/api/formation/category/{name}" ,"/api/formation/prix/{p1}/{p2}/categorie/{id}",
+                        "/api/formation/prix/{p1}/{p2}", "/api/formation/find/{param}", "/api/formation/last/added",
+                        "/api/formation/category/name/{name}")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

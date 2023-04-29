@@ -113,4 +113,20 @@ public class FormationController {
     public List<Formation> getFormationsByTagNameOrTitle(@PathVariable("param") String param) {
         return formationService.getFormationsByTagNameOrTitle(param.toUpperCase());
     }
+
+    @GetMapping("/category/{name}")
+    public List<Formation> getFormationsByCategoryName(@PathVariable("name") String name){
+        return formationService.getFormationsByCategorie_Nom(name);
+    }
+
+    @GetMapping("/last/added")
+    public List<Formation> findFirst10ByOrderByIdDesc(){
+        return formationService.findFirst10ByOrderByIdDesc();
+    }
+
+    @GetMapping("/category/name/{name}")
+    List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(@PathVariable("name") String categoryName){
+        return formationService.findFirst10ByCategorie_NomOrderByIdDesc(categoryName);
+    }
+
 }

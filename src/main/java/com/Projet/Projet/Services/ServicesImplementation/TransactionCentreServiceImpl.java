@@ -73,4 +73,9 @@ public class TransactionCentreServiceImpl implements TransactionCentreService {
         abonnementService.editAbonnement(abonnementId, abonnement);
         return transactionCentre;
     }
+
+    @Override
+    public List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(Long managerId) {
+        return transactionCentreRepository.getTransactionCentresByCentreFormation_Manager_Id(managerId);
+    }
 }

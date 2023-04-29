@@ -62,4 +62,14 @@ public class CategorieServiceImpl implements CategorieService {
         formationService.updateFormation(formation);
         return categorie;
     }
+
+    @Override
+    public Categorie getCategorieByNom(String nom) {
+        return categorieRepository.getCategorieByNom(nom);
+    }
+
+    @Override
+    public Categorie getCategorieByFormations_Id(Long id) {
+        return categorieRepository.getCategorieByFormations_Id(id);
+    }
 }

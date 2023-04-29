@@ -18,4 +18,7 @@ public interface FormationRepository extends JpaRepository<Formation,Long> {
     List<Formation> getFormationsByCentreFormation_Id(Long centerId);
     @Query("SELECT f FROM Formation f LEFT JOIN f.tags t WHERE UPPER(f.titre) LIKE %:query% OR UPPER(t.nom) LIKE %:query%")
     List<Formation> findByTagNameOrTitle(@Param("query") String query);
+    List<Formation> getFormationsByCategorie_Nom(String nom);
+    List<Formation> findFirst10ByOrderByIdDesc();
+    List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(String CategoryName);
 }

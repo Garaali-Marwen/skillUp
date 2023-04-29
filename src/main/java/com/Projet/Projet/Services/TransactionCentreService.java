@@ -13,4 +13,6 @@ public interface TransactionCentreService {
     void deleteTransaction(Long transactionId);
     TransactionCentre addTransactionToCentre(Long centreId, Long transactionId);
     TransactionCentre addTransactionToAbonnement(Long abonnementId, Long transactionId);
+    List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(Long managerId);
+
 }
