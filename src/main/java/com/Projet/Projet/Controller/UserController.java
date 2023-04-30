@@ -2,6 +2,7 @@ package com.Projet.Projet.Controller;
 
 import com.Projet.Projet.Configuration.AuthenticationRequest;
 import com.Projet.Projet.Configuration.AuthenticationResponse;
+import com.Projet.Projet.Entities.User;
 import com.Projet.Projet.Services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,5 +19,9 @@ public class UserController {
         return userService.login(request);
     }
 
+    @GetMapping("/{id}")
+    public User lockAccount(@PathVariable("id") Long userId) {
+        return userService.lockAccount(userId);
+    }
 
-}
+    }

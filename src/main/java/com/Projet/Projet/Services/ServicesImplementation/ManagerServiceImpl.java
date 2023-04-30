@@ -68,4 +68,9 @@ public class ManagerServiceImpl implements ManagerService {
         centreFormationService.updateCentreFormation(centreId,centreFormation);
         return manager;
     }
+
+    @Override
+    public List<Manager> getManagerByAccountNonLocked(boolean value) {
+        return managerRepository.getManagerByAccountNonLocked(value);
+    }
 }

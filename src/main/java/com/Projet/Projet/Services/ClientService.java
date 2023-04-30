@@ -12,4 +12,6 @@ public interface ClientService {
     Client updateClient(Client client);
     void deleteClient(Long clientId);
     Client addClientToFormation(Long clientId, Long formationId);
+    List<Client> getClientsByAccountNonLocked(boolean value);
+
 }

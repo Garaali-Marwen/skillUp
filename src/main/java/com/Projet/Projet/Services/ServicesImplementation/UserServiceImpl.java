@@ -12,6 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 
 @Service
 @RequiredArgsConstructor
@@ -33,5 +35,12 @@ public class UserServiceImpl implements UserService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    @Override
+    public User lockAccount(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException("introuvable"));
+        user.setAccountNonLocked(!user.isAccountNonLocked());
+        return userRepository.save(user);
     }
 }

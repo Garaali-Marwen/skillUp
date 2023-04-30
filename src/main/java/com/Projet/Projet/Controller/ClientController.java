@@ -18,25 +18,35 @@ public class ClientController {
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
+
     @GetMapping("/{id}")
     public Client getClientById(@PathVariable("id") Long clientId) {
         return clientService.getClientById(clientId);
     }
+
     @PostMapping("/add")
     public Client addClient(@RequestBody Client client) {
         return clientService.addClient(client);
     }
+
     @PutMapping("/update")
     public Client updateClient(@RequestBody Client client) {
         return clientService.updateClient(client);
     }
+
     @DeleteMapping("/delete/{id}")
     public void deleteClient(@PathVariable("id") Long clientId) {
         clientService.deleteClient(clientId);
     }
+
     @GetMapping("/formation/{fid}/client/{cid}")
     public Client addClientToFormation(@PathVariable("cid") Long clientId, @PathVariable("fid") Long formationId) {
         return clientService.addClientToFormation(clientId, formationId);
+    }
+
+    @GetMapping("/etat/{value}")
+    public List<Client> getClientsByAccountNonLocked(@PathVariable("value") boolean value) {
+        return clientService.getClientsByAccountNonLocked(value);
     }
 
 }

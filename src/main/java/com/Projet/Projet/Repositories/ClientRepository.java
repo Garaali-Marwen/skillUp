@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Client,Long> {
     List<Client> findClientsByFormations_Id(Long formationId);
+    List<Client> getClientsByAccountNonLocked(boolean value);
 
 }
