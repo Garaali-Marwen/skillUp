@@ -40,7 +40,7 @@ public class User implements UserDetails {
     private List<Discussion> discussions = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Message> messages = new ArrayList<>();
-
+    private boolean accountNonLocked = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -64,7 +64,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.Projet.Projet.Services;
 
 import com.Projet.Projet.Entities.CentreFormation;
+import com.Projet.Projet.Enum.EtatDemandeInscription;
 
 import java.util.List;
 
@@ -19,5 +20,6 @@ public interface CentreFormationService {
     CentreFormation addCategorieToCentreFormation(Long categorieId, Long centreId);
     CentreFormation addFormationToCentreFormation(Long formationId, Long centreId);
     List<CentreFormation> getAllByManagerId(Long managerId);
-
+    List<CentreFormation> getCentreFormationsByEtatDemandeInscription(EtatDemandeInscription etat);
+    CentreFormation changeEtatDemandeIscription(Long idCenter, EtatDemandeInscription etatDemandeInscription);
 }

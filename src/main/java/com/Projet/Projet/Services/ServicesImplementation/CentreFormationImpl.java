@@ -116,5 +116,17 @@ public class CentreFormationImpl implements CentreFormationService {
         return centreFormationRepository.getCentreFormationsByManager_Id(managerId);
     }
 
+    @Override
+    public List<CentreFormation> getCentreFormationsByEtatDemandeInscription(EtatDemandeInscription etat) {
+        return centreFormationRepository.getCentreFormationsByEtatDemandeInscription(etat);
+    }
+
+    @Override
+    public CentreFormation changeEtatDemandeIscription(Long idCenter, EtatDemandeInscription etatDemandeInscription) {
+        CentreFormation centreFormation = getCentreFormationById(idCenter);
+        centreFormation.setEtatDemandeInscription(etatDemandeInscription);
+        return centreFormationRepository.save(centreFormation);
+    }
+
 
 }

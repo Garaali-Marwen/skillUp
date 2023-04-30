@@ -46,7 +46,15 @@ public class ClientServiceImpl implements ClientService {
         if (!clientRepository.existsById(client.getId())){
             throw new NoSuchElementException("Aucun client avec ID: " + client.getId());
         }
-        return clientRepository.save(client);
+        Client clientUpdated = getClientById(client.getId());
+        clientUpdated.setNom(client.getNom());
+        clientUpdated.setPrenom(client.getPrenom());
+        clientUpdated.setTel(client.getTel());
+        clientUpdated.setAdresse(client.getAdresse());
+        clientUpdated.setDateNaissance(client.getDateNaissance());
+        clientUpdated.setFonction(client.getFonction());
+        clientUpdated.setEmail(clientUpdated.getEmail());
+        return clientRepository.save(clientUpdated);
     }
 
     @Override
@@ -63,5 +71,10 @@ public class ClientServiceImpl implements ClientService {
         formation.getClients().add(client);
         formationService.updateFormation(formation);
         return client;
+    }
+
+    @Override
+    public List<Client> getClientsByAccountNonLocked(boolean value) {
+        return clientRepository.getClientsByAccountNonLocked(value);
     }
 }
