@@ -17,6 +17,7 @@ public class Manager extends User {
     private String prenom;
     private LocalDate dateNaissance;
     private int tel;
+    private String img;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager")
     @JsonIgnore
     private List<CentreFormation> centreFormation = new ArrayList<>();

@@ -12,4 +12,6 @@ public interface AbonnementService {
     Abonnement addAbonnement(Abonnement abonnement);
     Abonnement editAbonnement(Long id, Abonnement abonnement);
     void deleteAbonnement(Long id);
+    Abonnement findFirstByCentreFormation_IdOrderByIdDesc(Long idCenter);
+
 }

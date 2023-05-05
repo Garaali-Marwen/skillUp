@@ -7,6 +7,8 @@ import com.Projet.Projet.Services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -15,7 +17,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/authenticate")
-    public AuthenticationResponse login(@RequestBody AuthenticationRequest request){
+    public AuthenticationResponse login(@RequestBody AuthenticationRequest request) {
         return userService.login(request);
     }
 
@@ -24,4 +26,8 @@ public class UserController {
         return userService.lockAccount(userId);
     }
 
+    @GetMapping("/email/{email}")
+    public Optional<User> findByEmail(@PathVariable("email") String email) {
+        return userService.findByEmail(email);
     }
+}

@@ -129,4 +129,9 @@ public class FormationController {
         return formationService.findFirst10ByCategorie_NomOrderByIdDesc(categoryName);
     }
 
+    @GetMapping("/all/valide")
+    public List<Formation> getAllCoursesForValidateAbonnement(){
+        return formationService.getAllCoursesForValidateAbonnement();
+    }
+
 }

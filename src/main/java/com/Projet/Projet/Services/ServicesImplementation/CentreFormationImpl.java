@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 @Service
 @AllArgsConstructor
 public class CentreFormationImpl implements CentreFormationService {
-    private  CentreFormationRepository centreFormationRepository;
+    private CentreFormationRepository centreFormationRepository;
     private AbonnementService abonnementService;
     private OffreService offreService;
     private CategorieService categorieService;
@@ -25,6 +25,7 @@ public class CentreFormationImpl implements CentreFormationService {
         return centreFormationRepository.save(centreFormation);
 
     }
+
     @Override
     public List<CentreFormation> getAllCentreFormation() {
         return centreFormationRepository.findAll();
@@ -32,11 +33,11 @@ public class CentreFormationImpl implements CentreFormationService {
 
     @Override
     public String deleteCentreFormation(final Long id) {
-        CentreFormation centreFormation=centreFormationRepository.findById(id).orElse(null);
-        if(centreFormation!=null){
+        CentreFormation centreFormation = centreFormationRepository.findById(id).orElse(null);
+        if (centreFormation != null) {
             centreFormationRepository.delete(centreFormation);
             return "centre supprimé avec succé";
-        }else
+        } else
             return "centre n'existe pas";
 
 
@@ -44,12 +45,12 @@ public class CentreFormationImpl implements CentreFormationService {
 
     @Override
     public CentreFormation getCentreFormationById(Long id) {
-        return centreFormationRepository.findById(id).orElseThrow(()-> new NoSuchElementException(
+        return centreFormationRepository.findById(id).orElseThrow(() -> new NoSuchElementException(
                 "NO Centre PRESENT WITH ID = " + id));
     }
 
     @Override
-    public CentreFormation updateCentreFormation(Long cid, CentreFormation centreFormation){
+    public CentreFormation updateCentreFormation(Long cid, CentreFormation centreFormation) {
         CentreFormation centreFormationDB = getCentreFormationById(cid);
 
         centreFormationDB.setNom(centreFormation.getNom());
@@ -64,27 +65,27 @@ public class CentreFormationImpl implements CentreFormationService {
     }
 
     @Override
-    public CentreFormation addOffreToCentreFormation(Long cid, Long oid){
+    public CentreFormation addOffreToCentreFormation(Long cid, Long oid) {
         CentreFormation centreFormation = getCentreFormationById(cid);
         Offre offre = offreService.getOfferById(oid);
 
         centreFormation.getOffres().add(offre);
-        updateCentreFormation(cid,centreFormation);
+        updateCentreFormation(cid, centreFormation);
 
         offre.setCentreFormation(centreFormation);
         return centreFormation;
     }
 
     @Override
-    public CentreFormation addAbonnementToCentreFormation(Long aid, Long cid){
+    public CentreFormation addAbonnementToCentreFormation(Long aid, Long cid) {
         CentreFormation centreFormation = getCentreFormationById(cid);
         Abonnement abonnement = abonnementService.getAbonnementById(aid);
 
         centreFormation.getAbonnements().add(abonnement);
-        updateCentreFormation(cid,centreFormation);
+        updateCentreFormation(cid, centreFormation);
 
         abonnement.setCentreFormation(centreFormation);
-
+        abonnementService.editAbonnement(abonnement.getId(),abonnement);
         return centreFormation;
 
     }
@@ -94,7 +95,7 @@ public class CentreFormationImpl implements CentreFormationService {
         CentreFormation centreFormation = getCentreFormationById(centreId);
         Categorie categorie = categorieService.getCategorieById(categorieId);
         centreFormation.getCategorie().add(categorie);
-        updateCentreFormation(centreId,centreFormation);
+        updateCentreFormation(centreId, centreFormation);
         categorie.getCentreFormations().add(centreFormation);
         categorieService.updateCategorie(categorie);
         return centreFormation;
@@ -105,7 +106,7 @@ public class CentreFormationImpl implements CentreFormationService {
         CentreFormation centreFormation = getCentreFormationById(centreId);
         Formation formation = formationService.getFormationById(formationId);
         centreFormation.getFormations().add(formation);
-        updateCentreFormation(centreId,centreFormation);
+        updateCentreFormation(centreId, centreFormation);
         formation.setCentreFormation(centreFormation);
         formationService.updateFormation(formation);
         return centreFormation;
