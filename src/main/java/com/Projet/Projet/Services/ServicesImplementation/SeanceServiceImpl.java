@@ -35,7 +35,11 @@ public class SeanceServiceImpl implements SeanceService {
         if (!seanceRepository.existsById(seance.getId())) {
             throw new NoSuchElementException("Aucune seance avec ID : " + seance.getId());
         }
-        return seanceRepository.save(seance);
+        Seance seanceUpdated = getSeanceById(seance.getId());
+        seanceUpdated.setDate(seance.getDate());
+        seanceUpdated.setHeureDebut(seance.getHeureDebut());
+        seanceUpdated.setHeureFin(seance.getHeureFin());
+        return seanceRepository.save(seanceUpdated);
     }
 
     @Override

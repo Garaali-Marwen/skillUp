@@ -1,18 +1,26 @@
 package com.Projet.Projet.Controller;
 
+import com.Projet.Projet.Configuration.ImageUpload;
+import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Entities.Manager;
+import com.Projet.Projet.Repositories.ManagerRepository;
 import com.Projet.Projet.Services.ManagerService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/manager")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class ManagerController {
-    @Autowired
     private ManagerService managerService;
+    private ManagerRepository managerRepository;
 
     @GetMapping("")
     public List<Manager> getAllManagers() {
@@ -25,10 +33,21 @@ public class ManagerController {
     }
 
     @PostMapping("/add")
-    public Manager addManager(@RequestBody Manager manager) {
-        return managerService.addManager(manager);
+    public Manager addFormation(@RequestPart("manager") Manager manager,
+                                  @RequestPart("image") MultipartFile image) {
+        Manager manager1 = managerService.addManager(manager);
+        String orgFileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+        String ext;
+        int dotIndex = orgFileName.lastIndexOf(".");
+        if (dotIndex >= 0) {
+            ext = orgFileName.substring(dotIndex);
+            String fileName = "user-" + manager1.getId() + ext;
+            String uploadDir = "../SkillUp-FE/src/assets/user-photos";
+            ImageUpload.saveFile(uploadDir, fileName, image);
+            manager1.setImg(fileName);
+        }
+        return managerService.updateManager(manager1);
     }
-
     @PutMapping("/update")
     public Manager updateManager(@RequestBody Manager manager) {
         return managerService.updateManager(manager);

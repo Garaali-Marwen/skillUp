@@ -4,14 +4,13 @@ import com.Projet.Projet.Entities.*;
 import com.Projet.Projet.Repositories.ClientRepository;
 import com.Projet.Projet.Repositories.FormationRepository;
 import com.Projet.Projet.Repositories.TagRepository;
-import com.Projet.Projet.Services.FormateurService;
-import com.Projet.Projet.Services.FormationService;
-import com.Projet.Projet.Services.OffreService;
-import com.Projet.Projet.Services.SeanceService;
+import com.Projet.Projet.Services.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -26,7 +25,7 @@ public class FormationServiceImpl implements FormationService {
     private OffreService offreService;
     private TagRepository tagRepository;
     private FormateurService formateurService;
-
+    private AbonnementService abonnementService;
 
     @Override
     public Formation addFormation(Formation formation) {
@@ -139,6 +138,21 @@ public class FormationServiceImpl implements FormationService {
     @Override
     public List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(String categoryName) {
         return formationRepository.findFirst10ByCategorie_NomOrderByIdDesc(categoryName);
+    }
+
+    @Override
+    public List<Formation> getAllCoursesForValidateAbonnement() {
+        List<Formation> formations = getAllFormations();
+        List<Formation> validateFormations = new ArrayList<>();
+        for (Formation formation : formations) {
+            Abonnement abonnement = abonnementService.findFirstByCentreFormation_IdOrderByIdDesc(formation.getCentreFormation().getId());
+            if (abonnement != null){
+                if (abonnement.getDateFin().isAfter(LocalDate.now()) || abonnement.getDateFin().isEqual(LocalDate.now())) {
+                    validateFormations.add(formation);
+                }
+            }
+        }
+        return validateFormations;
     }
 
     @Override

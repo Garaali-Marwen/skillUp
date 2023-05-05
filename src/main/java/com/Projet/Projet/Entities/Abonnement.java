@@ -14,7 +14,7 @@ public class Abonnement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TypeAbonnement type;
     private LocalDate dateDebut;
     private LocalDate dateFin;

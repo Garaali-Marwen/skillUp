@@ -40,4 +40,9 @@ public class AbonnementController {
     void deleteAbonnement(@PathVariable Long id){
         abonnementService.deleteAbonnement(id);
     }
+
+    @GetMapping("/center/{id}")
+    public Abonnement findFirstByCentreFormation_IdOrderByIdDesc(@PathVariable("id") Long idCenter) {
+        return abonnementService.findFirstByCentreFormation_IdOrderByIdDesc(idCenter);
+    }
 }

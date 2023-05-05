@@ -36,18 +36,21 @@ public class AbonnementServiceImpl implements AbonnementService {
     public Abonnement editAbonnement(Long id, Abonnement abonnement) {
         Abonnement newAbonnement = getAbonnementById(id);
 
-        newAbonnement.setCentreFormation(abonnement.getCentreFormation());
         newAbonnement.setDateDebut(abonnement.getDateDebut());
         newAbonnement.setDateFin(abonnement.getDateFin());
         newAbonnement.setType(abonnement.getType());
-        newAbonnement.setTransaction(abonnement.getTransaction());
 
-        abonnementRepository.save(abonnement);
+        abonnementRepository.save(newAbonnement);
         return newAbonnement;
     }
 
     @Override
     public void deleteAbonnement(Long id) {
         abonnementRepository.deleteById(id);
+    }
+
+    @Override
+    public Abonnement findFirstByCentreFormation_IdOrderByIdDesc(Long idCenter) {
+        return abonnementRepository.findFirst1ByCentreFormation_IdOrderByIdDesc(idCenter);
     }
 }

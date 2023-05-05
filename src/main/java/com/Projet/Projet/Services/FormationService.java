@@ -23,7 +23,7 @@ public interface FormationService {
     List<Formation> getFormationsByCategorie_Nom(String nom);
     List<Formation> findFirst10ByOrderByIdDesc();
     List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(String categoryName);
-
+    List<Formation> getAllCoursesForValidateAbonnement();
 
     Formation addFormateurToFormation(Long formateurId, Long formationId);
     Formation addOffreToFormation(Long oid, Long formationId);
