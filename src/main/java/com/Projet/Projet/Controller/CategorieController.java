@@ -53,4 +53,9 @@ public class CategorieController {
     public Categorie getCategorieByFormations_Id(@PathVariable("id") Long id) {
         return categorieService.getCategorieByFormations_Id(id);
     }
+
+    @GetMapping("/stats/categories/number")
+    public int getCategoriesNumber(){
+        return categorieService.getCategoriesNb();
+    }
 }

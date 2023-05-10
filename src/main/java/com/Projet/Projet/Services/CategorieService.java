@@ -15,4 +15,5 @@ public interface CategorieService {
     Categorie getCategorieByNom(String nom);
     Categorie getCategorieByFormations_Id(Long id);
 
+    int getCategoriesNb();
 }

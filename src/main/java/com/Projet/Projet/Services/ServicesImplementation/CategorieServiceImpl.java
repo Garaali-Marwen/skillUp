@@ -72,4 +72,9 @@ public class CategorieServiceImpl implements CategorieService {
     public Categorie getCategorieByFormations_Id(Long id) {
         return categorieRepository.getCategorieByFormations_Id(id);
     }
+
+    @Override
+    public int getCategoriesNb() {
+        return categorieRepository.getCategoriesNumber();
+    }
 }
