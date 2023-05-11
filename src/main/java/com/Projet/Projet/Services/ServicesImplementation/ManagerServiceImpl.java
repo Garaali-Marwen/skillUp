@@ -55,6 +55,7 @@ public class ManagerServiceImpl implements ManagerService {
         managerUpdated.setTel(manager.getTel());
         managerUpdated.setDateNaissance(manager.getDateNaissance());
         managerUpdated.setEmail(manager.getEmail());
+        managerUpdated.setImg(manager.getImg());
         return managerUpdated;
     }
 
@@ -72,5 +73,10 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public List<Manager> getManagerByAccountNonLocked(boolean value) {
         return managerRepository.getManagerByAccountNonLocked(value);
+    }
+
+    @Override
+    public List<Manager> findFirst10OrderByIdDesc() {
+        return managerRepository.findFirst10ByOrderByIdDesc();
     }
 }

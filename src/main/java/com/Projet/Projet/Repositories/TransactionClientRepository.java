@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface TransactionClientRepository extends JpaRepository<TransactionClient,Long> {
     List<TransactionClient> findTransactionClientByClient_Id(Long clientId);
+    List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId);
 
 }

@@ -22,4 +22,6 @@ public interface CentreFormationService {
     List<CentreFormation> getAllByManagerId(Long managerId);
     List<CentreFormation> getCentreFormationsByEtatDemandeInscription(EtatDemandeInscription etat);
     CentreFormation changeEtatDemandeIscription(Long idCenter, EtatDemandeInscription etatDemandeInscription);
+    CentreFormation getCentreFormationByFormations_Id(Long formationId);
+
 }

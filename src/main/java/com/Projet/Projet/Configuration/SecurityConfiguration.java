@@ -33,7 +33,8 @@ public class SecurityConfiguration {
                         "/api/formation/{id}", "/api/formation/category/{name}" ,"/api/formation/prix/{p1}/{p2}/categorie/{id}",
                         "/api/formation/prix/{p1}/{p2}", "/api/formation/find/{param}", "/api/formation/last/added",
                         "/api/formation/category/name/{name}", "/api/CentreFormation/{cid}/categorie/{caid}",
-                        "/api/categorie/nom/{nom}", "/api/user/email/{email}", "/api/formation/all/valide")
+                        "/api/categorie/nom/{nom}", "/api/user/email/{email}", "/api/formation/all/valide",
+                        "/api/transaction/client/course/{cid}", "/api/CentreFormation/course/{id}")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

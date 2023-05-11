@@ -10,4 +10,7 @@ import java.util.List;
 public interface ManagerRepository extends JpaRepository<Manager, Long> {
 
     List<Manager> getManagerByAccountNonLocked(boolean value);
+
+    List<Manager> findFirst10ByOrderByIdDesc();
+
 }

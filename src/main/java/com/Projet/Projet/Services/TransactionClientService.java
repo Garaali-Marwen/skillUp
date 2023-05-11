@@ -14,6 +14,6 @@ public interface TransactionClientService {
     void deleteTransactionClient(Long transactionId);
     TransactionClient addTransactionToClient(Long clientId, Long transactionId);
     TransactionClient addTransactionToFormation(Long formationId, Long transactionId);
-
+    List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId);
 
 }

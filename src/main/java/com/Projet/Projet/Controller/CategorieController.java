@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/categorie")
@@ -52,5 +53,10 @@ public class CategorieController {
     @GetMapping("/formation/{id}")
     public Categorie getCategorieByFormations_Id(@PathVariable("id") Long id) {
         return categorieService.getCategorieByFormations_Id(id);
+    }
+
+    @GetMapping("/percentage/courses")
+    public List<Map<String, Float>> getPercentageOfCoursesInEachCategory() {
+        return categorieService.getPercentageOfCoursesInEachCategory();
     }
 }
