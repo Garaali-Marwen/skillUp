@@ -48,4 +48,10 @@ public class TransactionClientController {
     public TransactionClient addTransactionToFormation(@PathVariable("fid") Long formationId, @PathVariable("tid") Long transactionId){
         return transactionClientService.addTransactionToFormation(formationId,transactionId);
     }
+
+    @GetMapping("/stats/sumTransactionsClientPerCategory")
+    List<Object[]> getSumTransactionsClientPerCategory(){
+        return transactionClientService.getSumTransactionsClientPerCategory();
+    }
+
 }

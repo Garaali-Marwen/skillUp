@@ -73,4 +73,9 @@ public class ManagerServiceImpl implements ManagerService {
     public List<Manager> getManagerByAccountNonLocked(boolean value) {
         return managerRepository.getManagerByAccountNonLocked(value);
     }
+
+    @Override
+    public int getManagersCount() {
+        return managerRepository.getManagersNumber();
+    }
 }

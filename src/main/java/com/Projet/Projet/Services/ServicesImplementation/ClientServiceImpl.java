@@ -77,4 +77,9 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getClientsByAccountNonLocked(boolean value) {
         return clientRepository.getClientsByAccountNonLocked(value);
     }
+
+    @Override
+    public int getClientsNumber() {
+        return clientRepository.getClientsNumber();
+    }
 }

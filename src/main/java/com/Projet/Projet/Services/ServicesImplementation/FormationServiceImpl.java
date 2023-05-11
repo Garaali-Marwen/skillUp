@@ -182,4 +182,9 @@ public class FormationServiceImpl implements FormationService {
 
         return formation;
     }
+
+    @Override
+    public int getFormaationsNumber() {
+        return formationRepository.getFormaationsNumber();
+    }
 }

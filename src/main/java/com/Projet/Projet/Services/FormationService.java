@@ -27,4 +27,6 @@ public interface FormationService {
 
     Formation addFormateurToFormation(Long formateurId, Long formationId);
     Formation addOffreToFormation(Long oid, Long formationId);
+
+    int getFormaationsNumber();
 }

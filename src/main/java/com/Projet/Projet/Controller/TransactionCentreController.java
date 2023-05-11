@@ -47,4 +47,9 @@ public class TransactionCentreController {
     public List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(@PathVariable("id") Long managerId){
         return transactionCentreService.getTransactionCentresByCentreFormation_Manager_Id(managerId);
     }
+
+    @GetMapping("/stats/transactionsSum")
+    public double getTransactionsCentresSum(){
+        return transactionCentreService.getTransactionsCentresSum();
+    }
 }

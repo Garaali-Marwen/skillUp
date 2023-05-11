@@ -80,4 +80,8 @@ public class TransactionClientServiceImpl implements TransactionClientService {
         formationService.updateFormation(formation);
         return transactionClient;
     }
+    @Override
+    public List<Object[]> getSumTransactionsClientPerCategory() {
+        return transactionClientRepository.getSumTransactionsPerCategory();
+    }
 }

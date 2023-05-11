@@ -134,4 +134,9 @@ public class FormationController {
         return formationService.getAllCoursesForValidateAbonnement();
     }
 
+    @GetMapping("/stats/trainingsCount")
+    public int getTrainingsCount(){
+        return formationService.getFormaationsNumber();
+    }
+
 }

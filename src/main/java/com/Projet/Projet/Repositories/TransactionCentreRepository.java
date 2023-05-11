@@ -2,6 +2,7 @@ package com.Projet.Projet.Repositories;
 
 import com.Projet.Projet.Entities.TransactionCentre;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,4 +11,7 @@ import java.util.List;
 public interface TransactionCentreRepository extends JpaRepository<TransactionCentre, Long> {
 
     List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(Long managerId);
+
+    @Query("SELECT sum(valeur) FROM TransactionCentre")
+    double getTransactionsCentresSum();
 }

@@ -58,4 +58,10 @@ public class CategorieController {
     public int getCategoriesNumber(){
         return categorieService.getCategoriesNb();
     }
+
+    @GetMapping("/stats/categoriesContainsTrainings")
+    List<Categorie> getAllCategoriesContainsTrainings(){
+        return categorieService.getAllCategoriesContainsTrainings();
+    }
+
 }

@@ -67,4 +67,9 @@ public class ManagerController {
     public List<Manager> getManagerByAccountNonLocked(@PathVariable("value") boolean value) {
         return managerService.getManagerByAccountNonLocked(value);
     }
+
+    @GetMapping("/stats/managersCount")
+    public int getManagersCount(){
+        return managerService.getManagersCount();
+    }
 }

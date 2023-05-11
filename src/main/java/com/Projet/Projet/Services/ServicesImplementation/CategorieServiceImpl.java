@@ -77,4 +77,9 @@ public class CategorieServiceImpl implements CategorieService {
     public int getCategoriesNb() {
         return categorieRepository.getCategoriesNumber();
     }
+
+    @Override
+    public List<Categorie> getAllCategoriesContainsTrainings() {
+        return categorieRepository.getNotNullCategories();
+    }
 }

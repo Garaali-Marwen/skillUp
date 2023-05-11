@@ -78,4 +78,9 @@ public class TransactionCentreServiceImpl implements TransactionCentreService {
     public List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(Long managerId) {
         return transactionCentreRepository.getTransactionCentresByCentreFormation_Manager_Id(managerId);
     }
+
+    @Override
+    public double getTransactionsCentresSum() {
+        return transactionCentreRepository.getTransactionsCentresSum();
+    }
 }
