@@ -48,4 +48,9 @@ public class TransactionClientController {
     public TransactionClient addTransactionToFormation(@PathVariable("fid") Long formationId, @PathVariable("tid") Long transactionId){
         return transactionClientService.addTransactionToFormation(formationId,transactionId);
     }
+    @GetMapping("/course/{cid}")
+    public List<TransactionClient> getTransactionClientsByFormation_Id(@PathVariable("cid") Long formationId){
+        return transactionClientService.getTransactionClientsByFormation_Id(formationId);
+    }
+
 }

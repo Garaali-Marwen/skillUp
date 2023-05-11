@@ -13,5 +13,6 @@ public interface ManagerService {
     Manager updateManager(Manager manager);
     Manager affectCenterToManager(Long centreId, Long managerId);
     List<Manager> getManagerByAccountNonLocked(boolean value);
+    List<Manager> findFirst10OrderByIdDesc();
 
 }

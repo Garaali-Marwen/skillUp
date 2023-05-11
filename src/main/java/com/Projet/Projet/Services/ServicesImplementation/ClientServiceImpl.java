@@ -54,6 +54,7 @@ public class ClientServiceImpl implements ClientService {
         clientUpdated.setDateNaissance(client.getDateNaissance());
         clientUpdated.setFonction(client.getFonction());
         clientUpdated.setEmail(clientUpdated.getEmail());
+        clientUpdated.setImg(client.getImg());
         return clientRepository.save(clientUpdated);
     }
 

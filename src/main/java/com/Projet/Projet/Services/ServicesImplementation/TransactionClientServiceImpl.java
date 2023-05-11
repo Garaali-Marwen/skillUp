@@ -80,4 +80,9 @@ public class TransactionClientServiceImpl implements TransactionClientService {
         formationService.updateFormation(formation);
         return transactionClient;
     }
+
+    @Override
+    public List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId) {
+        return transactionClientRepository.getTransactionClientsByFormation_Id(formationId);
+    }
 }

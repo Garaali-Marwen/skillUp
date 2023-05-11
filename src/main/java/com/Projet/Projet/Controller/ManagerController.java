@@ -1,6 +1,7 @@
 package com.Projet.Projet.Controller;
 
 import com.Projet.Projet.Configuration.ImageUpload;
+import com.Projet.Projet.Entities.Client;
 import com.Projet.Projet.Entities.Formation;
 import com.Projet.Projet.Entities.Manager;
 import com.Projet.Projet.Repositories.ManagerRepository;
@@ -49,10 +50,24 @@ public class ManagerController {
         return managerService.updateManager(manager1);
     }
     @PutMapping("/update")
-    public Manager updateManager(@RequestBody Manager manager) {
+    public Manager updateManager(@RequestPart("user") Manager manager,
+                                 @RequestPart("image") MultipartFile image) {
+        String orgFileName = StringUtils.cleanPath(image.getOriginalFilename());
+        if (!orgFileName.equals("")){
+            String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
+            String fileName = "user-" + manager.getId() + ext;
+            String uploadDir = "../SkillUp-FE/src/assets/user-photos";
+            ImageUpload.saveFile(uploadDir, fileName, image);
+            manager.setImg(fileName);
+        }
         return managerService.updateManager(manager);
     }
 
+
+    @PutMapping("/update/checkout")
+    public Manager updateClientCheckout(@RequestBody Manager manager) {
+        return managerService.updateManager(manager);
+    }
     @DeleteMapping("/delete/{id}")
     public void deleteManager(@PathVariable("id") Long managerId) {
         managerService.deleteManager(managerId);
@@ -66,5 +81,10 @@ public class ManagerController {
     @GetMapping("/etat/{value}")
     public List<Manager> getManagerByAccountNonLocked(@PathVariable("value") boolean value) {
         return managerService.getManagerByAccountNonLocked(value);
+    }
+
+    @GetMapping("/new")
+    public List<Manager> findFirst10OrderByIdDesc() {
+        return managerService.findFirst10OrderByIdDesc();
     }
 }
