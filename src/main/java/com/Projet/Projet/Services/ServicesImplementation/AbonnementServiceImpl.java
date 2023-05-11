@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -52,5 +53,10 @@ public class AbonnementServiceImpl implements AbonnementService {
     @Override
     public Abonnement findFirstByCentreFormation_IdOrderByIdDesc(Long idCenter) {
         return abonnementRepository.findFirst1ByCentreFormation_IdOrderByIdDesc(idCenter);
+    }
+
+    @Override
+    public List<Map<String, Long>> findSubscriptionsByMonthForCurrentYear() {
+        return abonnementRepository.findSubscriptionsByMonthForCurrentYear();
     }
 }

@@ -5,6 +5,7 @@ import com.Projet.Projet.Services.TransactionCentreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -48,8 +49,23 @@ public class TransactionCentreController {
         return transactionCentreService.getTransactionCentresByCentreFormation_Manager_Id(managerId);
     }
 
+
     @GetMapping("/stats/transactionsSum")
     public double getTransactionsCentresSum(){
         return transactionCentreService.getTransactionsCentresSum();
+
+    @GetMapping("/sales/day")
+    public Double getTotalForDay() {
+        return transactionCentreService.getTotalForDay();
+    }
+
+    @GetMapping("/sales/week")
+    public Double getTotalForWeek() {
+        return transactionCentreService.getTotalForWeek();
+    }
+
+    @GetMapping("/sales/month")
+    public Double getTotalForMonth() {
+        return transactionCentreService.getTotalForMonth();
     }
 }

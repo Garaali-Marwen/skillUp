@@ -18,6 +18,7 @@ public class Client extends User{
     private int tel;
     private String adresse;
     private String fonction;
+    private String img;
     @ManyToMany
     @JoinTable(
             name = "client_formation",

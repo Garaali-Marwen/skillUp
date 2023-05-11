@@ -14,4 +14,6 @@ public interface ManagerRepository extends JpaRepository<Manager, Long> {
 
     @Query("SELECT count(*) FROM Manager")
     int getManagersNumber();
+    List<Manager> findFirst10ByOrderByIdDesc();
+
 }

@@ -17,4 +17,6 @@ public interface TransactionClientService {
 
     List<Object[]> getSumTransactionsClientPerCategory();
 
+    List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId);
+
 }

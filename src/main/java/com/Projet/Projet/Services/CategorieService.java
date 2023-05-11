@@ -3,6 +3,7 @@ package com.Projet.Projet.Services;
 import com.Projet.Projet.Entities.Categorie;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CategorieService {
 
@@ -16,5 +17,6 @@ public interface CategorieService {
     Categorie getCategorieByFormations_Id(Long id);
     int getCategoriesNb();
     List<Categorie> getAllCategoriesContainsTrainings();
+    List<Map<String, Float>> getPercentageOfCoursesInEachCategory();
 
 }

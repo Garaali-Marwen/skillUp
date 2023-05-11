@@ -94,4 +94,9 @@ public class CentreFormationController {
         return centreFormationService.changeEtatDemandeIscription(idCenter, etatDemandeInscription);
     }
 
+    @GetMapping("/course/{id}")
+    public CentreFormation getCentreFormationByFormations_Id(@PathVariable("id") Long formationId) {
+        return centreFormationService.getCentreFormationByFormations_Id(formationId);
     }
+
+}

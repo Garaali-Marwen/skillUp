@@ -83,5 +83,10 @@ public class TransactionClientServiceImpl implements TransactionClientService {
     @Override
     public List<Object[]> getSumTransactionsClientPerCategory() {
         return transactionClientRepository.getSumTransactionsPerCategory();
+
+
+    @Override
+    public List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId) {
+        return transactionClientRepository.getTransactionClientsByFormation_Id(formationId);
     }
 }

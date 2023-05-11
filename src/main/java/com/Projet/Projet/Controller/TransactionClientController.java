@@ -52,6 +52,9 @@ public class TransactionClientController {
     @GetMapping("/stats/sumTransactionsClientPerCategory")
     List<Object[]> getSumTransactionsClientPerCategory(){
         return transactionClientService.getSumTransactionsClientPerCategory();
+    @GetMapping("/course/{cid}")
+    public List<TransactionClient> getTransactionClientsByFormation_Id(@PathVariable("cid") Long formationId){
+        return transactionClientService.getTransactionClientsByFormation_Id(formationId);
     }
 
 }

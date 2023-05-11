@@ -10,6 +10,7 @@ import com.Projet.Projet.Services.TransactionCentreService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -83,4 +84,24 @@ public class TransactionCentreServiceImpl implements TransactionCentreService {
     public double getTransactionsCentresSum() {
         return transactionCentreRepository.getTransactionsCentresSum();
     }
+
+    public Double getTotalForDay() {
+        return transactionCentreRepository.getTotalForDay(LocalDate.now());
+    }
+
+    @Override
+    public Double getTotalForWeek() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
+        LocalDate endOfWeek = startOfWeek.plusDays(6);
+        return transactionCentreRepository.getTotalForWeek(startOfWeek, endOfWeek);
+    }
+
+
+    @Override
+    public Double getTotalForMonth() {
+        return transactionCentreRepository.getTotalForMonth(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
+    }
+
+
 }

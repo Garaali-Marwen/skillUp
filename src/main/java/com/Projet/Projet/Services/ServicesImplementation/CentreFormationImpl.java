@@ -129,5 +129,10 @@ public class CentreFormationImpl implements CentreFormationService {
         return centreFormationRepository.save(centreFormation);
     }
 
+    @Override
+    public CentreFormation getCentreFormationByFormations_Id(Long formationId) {
+        return centreFormationRepository.findCentreFormationByFormations_Id(formationId);
+    }
+
 
 }

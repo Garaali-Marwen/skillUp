@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
@@ -81,5 +82,7 @@ public class CategorieServiceImpl implements CategorieService {
     @Override
     public List<Categorie> getAllCategoriesContainsTrainings() {
         return categorieRepository.getNotNullCategories();
+    public List<Map<String, Float>> getPercentageOfCoursesInEachCategory() {
+        return categorieRepository.getPercentageOfCoursesInEachCategory();
     }
 }

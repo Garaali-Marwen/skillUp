@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface TransactionClientRepository extends JpaRepository<TransactionClient,Long> {
     List<TransactionClient> findTransactionClientByClient_Id(Long clientId);
+    List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId);
 
     @Query("SELECT c.nom, SUM(t.valeur) FROM Categorie c JOIN c.formations f JOIN f.transactionClients t GROUP BY c.nom")
     List<Object[]> getSumTransactionsPerCategory();

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -44,5 +45,10 @@ public class AbonnementController {
     @GetMapping("/center/{id}")
     public Abonnement findFirstByCentreFormation_IdOrderByIdDesc(@PathVariable("id") Long idCenter) {
         return abonnementService.findFirstByCentreFormation_IdOrderByIdDesc(idCenter);
+    }
+
+    @GetMapping("/current/year")
+    public List<Map<String, Long>> findSubscriptionsByMonthForCurrentYear(){
+        return abonnementService.findSubscriptionsByMonthForCurrentYear();
     }
 }
