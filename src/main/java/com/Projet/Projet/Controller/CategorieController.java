@@ -55,8 +55,21 @@ public class CategorieController {
         return categorieService.getCategorieByFormations_Id(id);
     }
 
+
+    @GetMapping("/stats/categories/number")
+    public int getCategoriesNumber(){
+        return categorieService.getCategoriesNb();
+    }
+
+    @GetMapping("/stats/categoriesContainsTrainings")
+    List<Categorie> getAllCategoriesContainsTrainings(){
+        return categorieService.getAllCategoriesContainsTrainings();
+    }
+
+
     @GetMapping("/percentage/courses")
     public List<Map<String, Float>> getPercentageOfCoursesInEachCategory() {
         return categorieService.getPercentageOfCoursesInEachCategory();
     }
+
 }

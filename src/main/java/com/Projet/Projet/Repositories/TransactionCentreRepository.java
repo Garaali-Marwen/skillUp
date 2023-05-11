@@ -13,6 +13,9 @@ import java.util.List;
 public interface TransactionCentreRepository extends JpaRepository<TransactionCentre, Long> {
 
     List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(Long managerId);
+
+    @Query("SELECT sum(valeur) FROM TransactionCentre")
+    double getTransactionsCentresSum();
     @Query("SELECT SUM(t.valeur) FROM TransactionCentre t WHERE t.date = :date")
     Double getTotalForDay(@Param("date") LocalDate date);
 

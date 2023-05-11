@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 import java.util.Map;
 
 @Repository
@@ -14,6 +15,11 @@ public interface CategorieRepository extends JpaRepository<Categorie, Long> {
 
     Categorie getCategorieByFormations_Id(Long id);
 
+    @Query("SELECT count(*) FROM Categorie")
+    int getCategoriesNumber();
+
+    @Query("SELECT DISTINCT c FROM Categorie c JOIN c.formations f WHERE SIZE(c.formations) > 0")
+    List<Categorie> getNotNullCategories();
     @Query("SELECT c.nom as categoryName, ROUND(COUNT(f.id) * 100.0 / SUM(COUNT(f.id)) OVER (), 1) as percentage " +
             "FROM Categorie c " +
             "JOIN c.formations f " +

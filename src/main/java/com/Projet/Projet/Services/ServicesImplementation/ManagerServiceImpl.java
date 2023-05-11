@@ -76,6 +76,8 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
+    public int getManagersCount() {
+        return managerRepository.getManagersNumber();
     public List<Manager> findFirst10OrderByIdDesc() {
         return managerRepository.findFirst10ByOrderByIdDesc();
     }

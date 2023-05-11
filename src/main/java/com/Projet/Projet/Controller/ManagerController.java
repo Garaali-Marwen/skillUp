@@ -83,6 +83,9 @@ public class ManagerController {
         return managerService.getManagerByAccountNonLocked(value);
     }
 
+    @GetMapping("/stats/managersCount")
+    public int getManagersCount(){
+        return managerService.getManagersCount();
     @GetMapping("/new")
     public List<Manager> findFirst10OrderByIdDesc() {
         return managerService.findFirst10OrderByIdDesc();

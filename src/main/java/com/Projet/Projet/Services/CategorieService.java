@@ -15,6 +15,8 @@ public interface CategorieService {
     Categorie addFormationToCategorie(Long formationId, Long categorieId);
     Categorie getCategorieByNom(String nom);
     Categorie getCategorieByFormations_Id(Long id);
+    int getCategoriesNb();
+    List<Categorie> getAllCategoriesContainsTrainings();
     List<Map<String, Float>> getPercentageOfCoursesInEachCategory();
 
 }

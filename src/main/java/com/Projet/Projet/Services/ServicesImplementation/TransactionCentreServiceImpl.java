@@ -81,6 +81,10 @@ public class TransactionCentreServiceImpl implements TransactionCentreService {
     }
 
     @Override
+    public double getTransactionsCentresSum() {
+        return transactionCentreRepository.getTransactionsCentresSum();
+    }
+
     public Double getTotalForDay() {
         return transactionCentreRepository.getTotalForDay(LocalDate.now());
     }

@@ -50,6 +50,10 @@ public class TransactionCentreController {
     }
 
 
+    @GetMapping("/stats/transactionsSum")
+    public double getTransactionsCentresSum(){
+        return transactionCentreService.getTransactionsCentresSum();
+
     @GetMapping("/sales/day")
     public Double getTotalForDay() {
         return transactionCentreService.getTotalForDay();

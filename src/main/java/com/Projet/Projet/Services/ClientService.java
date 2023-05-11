@@ -14,4 +14,6 @@ public interface ClientService {
     Client addClientToFormation(Long clientId, Long formationId);
     List<Client> getClientsByAccountNonLocked(boolean value);
 
+    int getClientsNumber();
+
 }

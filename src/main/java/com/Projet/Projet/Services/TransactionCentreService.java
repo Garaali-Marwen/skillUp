@@ -16,6 +16,7 @@ public interface TransactionCentreService {
     TransactionCentre addTransactionToAbonnement(Long abonnementId, Long transactionId);
     List<TransactionCentre> getTransactionCentresByCentreFormation_Manager_Id(Long managerId);
 
+    double getTransactionsCentresSum();
     Double getTotalForDay();
     Double getTotalForWeek();
     Double getTotalForMonth();

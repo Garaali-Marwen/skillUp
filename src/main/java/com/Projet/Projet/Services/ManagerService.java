@@ -15,4 +15,6 @@ public interface ManagerService {
     List<Manager> getManagerByAccountNonLocked(boolean value);
     List<Manager> findFirst10OrderByIdDesc();
 
+    int getManagersCount();
+
 }
