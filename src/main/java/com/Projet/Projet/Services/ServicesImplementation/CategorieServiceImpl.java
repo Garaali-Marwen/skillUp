@@ -78,4 +78,9 @@ public class CategorieServiceImpl implements CategorieService {
     public List<Map<String, Float>> getPercentageOfCoursesInEachCategory() {
         return categorieRepository.getPercentageOfCoursesInEachCategory();
     }
+
+    @Override
+    public List<Categorie> getAllCategoriesContainsTrainings() {
+        return categorieRepository.getNotNullCategories();
+    }
 }

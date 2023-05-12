@@ -16,5 +16,6 @@ public interface CategorieService {
     Categorie getCategorieByNom(String nom);
     Categorie getCategorieByFormations_Id(Long id);
     List<Map<String, Float>> getPercentageOfCoursesInEachCategory();
+    List<Categorie> getAllCategoriesContainsTrainings();
 
 }

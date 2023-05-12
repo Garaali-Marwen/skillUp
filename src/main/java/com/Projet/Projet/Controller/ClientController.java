@@ -80,4 +80,9 @@ public class ClientController {
         return clientService.getClientsByAccountNonLocked(value);
     }
 
+    @GetMapping("/stats/clientsCount")
+    public int getClientsCount(){
+        return this.clientService.getClientsNumber();
+    }
+
 }

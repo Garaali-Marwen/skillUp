@@ -15,5 +15,6 @@ public interface TransactionClientService {
     TransactionClient addTransactionToClient(Long clientId, Long transactionId);
     TransactionClient addTransactionToFormation(Long formationId, Long transactionId);
     List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId);
+    List<Object[]> getSumTransactionsPerCategory();
 
 }

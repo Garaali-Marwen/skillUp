@@ -21,4 +21,6 @@ public interface FormationRepository extends JpaRepository<Formation,Long> {
     List<Formation> getFormationsByCategorie_Nom(String nom);
     List<Formation> findFirst10ByOrderByIdDesc();
     List<Formation> findFirst10ByCategorie_NomOrderByIdDesc(String CategoryName);
+    @Query("SELECT count(*) FROM Formation")
+    int getFormaationsNumber();
 }

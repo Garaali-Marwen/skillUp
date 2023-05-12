@@ -99,5 +99,10 @@ public class TransactionCentreServiceImpl implements TransactionCentreService {
         return transactionCentreRepository.getTotalForMonth(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
     }
 
+    @Override
+    public double getTransactionsCentresSum() {
+        return transactionCentreRepository.getTransactionsCentresSum();
+    }
+
 
 }

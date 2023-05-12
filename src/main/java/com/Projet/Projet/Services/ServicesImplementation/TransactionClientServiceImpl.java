@@ -85,4 +85,9 @@ public class TransactionClientServiceImpl implements TransactionClientService {
     public List<TransactionClient> getTransactionClientsByFormation_Id(Long formationId) {
         return transactionClientRepository.getTransactionClientsByFormation_Id(formationId);
     }
+
+    @Override
+    public List<Object[]> getSumTransactionsPerCategory() {
+        return transactionClientRepository.getSumTransactionsPerCategory();
+    }
 }

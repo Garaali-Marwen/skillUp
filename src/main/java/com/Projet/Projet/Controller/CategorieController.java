@@ -59,4 +59,9 @@ public class CategorieController {
     public List<Map<String, Float>> getPercentageOfCoursesInEachCategory() {
         return categorieService.getPercentageOfCoursesInEachCategory();
     }
+
+    @GetMapping("/stats/categoriesContainsTrainings")
+    List<Categorie> getAllCategoriesContainsTrainings(){
+        return categorieService.getAllCategoriesContainsTrainings();
+    }
 }

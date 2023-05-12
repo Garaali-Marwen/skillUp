@@ -35,7 +35,7 @@ public class ManagerController {
 
     @PostMapping("/add")
     public Manager addFormation(@RequestPart("manager") Manager manager,
-                                  @RequestPart("image") MultipartFile image) {
+                                @RequestPart("image") MultipartFile image) {
         Manager manager1 = managerService.addManager(manager);
         String orgFileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
         String ext;
@@ -49,11 +49,12 @@ public class ManagerController {
         }
         return managerService.updateManager(manager1);
     }
+
     @PutMapping("/update")
     public Manager updateManager(@RequestPart("user") Manager manager,
                                  @RequestPart("image") MultipartFile image) {
         String orgFileName = StringUtils.cleanPath(image.getOriginalFilename());
-        if (!orgFileName.equals("")){
+        if (!orgFileName.equals("")) {
             String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
             String fileName = "user-" + manager.getId() + ext;
             String uploadDir = "../SkillUp-FE/src/assets/user-photos";
@@ -68,6 +69,7 @@ public class ManagerController {
     public Manager updateClientCheckout(@RequestBody Manager manager) {
         return managerService.updateManager(manager);
     }
+
     @DeleteMapping("/delete/{id}")
     public void deleteManager(@PathVariable("id") Long managerId) {
         managerService.deleteManager(managerId);
@@ -86,5 +88,10 @@ public class ManagerController {
     @GetMapping("/new")
     public List<Manager> findFirst10OrderByIdDesc() {
         return managerService.findFirst10OrderByIdDesc();
+    }
+
+    @GetMapping("/stats/managersCount")
+    public int getManagersCount() {
+        return managerService.getManagersNumber();
     }
 }

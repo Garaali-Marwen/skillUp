@@ -14,5 +14,6 @@ public interface ManagerService {
     Manager affectCenterToManager(Long centreId, Long managerId);
     List<Manager> getManagerByAccountNonLocked(boolean value);
     List<Manager> findFirst10OrderByIdDesc();
+    int getManagersNumber();
 
 }

@@ -16,41 +16,52 @@ public class TransactionClientController {
     private TransactionClientService transactionClientService;
 
     @GetMapping("")
-    public List<TransactionClient> getAllTransactionsClient(){
+    public List<TransactionClient> getAllTransactionsClient() {
         return transactionClientService.getAllTransactions();
     }
+
     @GetMapping("/{id}")
-    public TransactionClient getTransactionClientById(@PathVariable("id") Long transactionId){
+    public TransactionClient getTransactionClientById(@PathVariable("id") Long transactionId) {
         return transactionClientService.getTransactionClientById(transactionId);
     }
 
     @GetMapping("/transactions/{id}")
-    public List<TransactionClient> getTransactionsByClientId(@PathVariable("id") Long clientId){
+    public List<TransactionClient> getTransactionsByClientId(@PathVariable("id") Long clientId) {
         return transactionClientService.getTransactionsByClientId(clientId);
     }
+
     @PostMapping("/add")
-    public TransactionClient addTransactionClient(@RequestBody TransactionClient transactionClient){
+    public TransactionClient addTransactionClient(@RequestBody TransactionClient transactionClient) {
         return transactionClientService.addTransactionClient(transactionClient);
     }
+
     @PutMapping("/update")
-    public TransactionClient updateTransactionClient(@RequestBody TransactionClient transactionClient){
+    public TransactionClient updateTransactionClient(@RequestBody TransactionClient transactionClient) {
         return transactionClientService.updateTransactionClient(transactionClient);
     }
+
     @DeleteMapping("/delete/{id}")
-    public void deleteTransactionClient(@PathVariable("id") Long transactionId){
+    public void deleteTransactionClient(@PathVariable("id") Long transactionId) {
         transactionClientService.deleteTransactionClient(transactionId);
     }
+
     @GetMapping("/{cid}/transaction/{tid}")
-    public TransactionClient addTransactionToClient(@PathVariable("cid") Long clientId, @PathVariable("tid") Long transactionId){
-        return transactionClientService.addTransactionToClient(clientId,transactionId);
+    public TransactionClient addTransactionToClient(@PathVariable("cid") Long clientId, @PathVariable("tid") Long transactionId) {
+        return transactionClientService.addTransactionToClient(clientId, transactionId);
     }
+
     @GetMapping("/formation/{fid}/transaction/{tid}")
-    public TransactionClient addTransactionToFormation(@PathVariable("fid") Long formationId, @PathVariable("tid") Long transactionId){
-        return transactionClientService.addTransactionToFormation(formationId,transactionId);
+    public TransactionClient addTransactionToFormation(@PathVariable("fid") Long formationId, @PathVariable("tid") Long transactionId) {
+        return transactionClientService.addTransactionToFormation(formationId, transactionId);
     }
+
     @GetMapping("/course/{cid}")
-    public List<TransactionClient> getTransactionClientsByFormation_Id(@PathVariable("cid") Long formationId){
+    public List<TransactionClient> getTransactionClientsByFormation_Id(@PathVariable("cid") Long formationId) {
         return transactionClientService.getTransactionClientsByFormation_Id(formationId);
     }
 
+    @GetMapping("/stats/sumTransactionsClientPerCategory")
+    List<Object[]> getSumTransactionsClientPerCategory() {
+        return transactionClientService.getSumTransactionsPerCategory();
+    }
 }

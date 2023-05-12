@@ -21,5 +21,6 @@ public interface TransactionCentreRepository extends JpaRepository<TransactionCe
 
     @Query("SELECT SUM(t.valeur) FROM TransactionCentre t WHERE YEAR(t.date) = :year AND MONTH(t.date) = :month")
     Double getTotalForMonth(@Param("year") int year, @Param("month") int month);
-
+    @Query("SELECT sum(valeur) FROM TransactionCentre")
+    double getTransactionsCentresSum();
 }
