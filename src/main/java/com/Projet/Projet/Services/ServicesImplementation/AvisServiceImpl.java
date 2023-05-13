@@ -40,7 +40,7 @@ public class AvisServiceImpl implements AvisService {
 
     @Override
     public Avis updateAvis(Avis avis) {
-        if (!avisRepository.existsById(avis.getId())){
+        if (!avisRepository.existsById(avis.getId())) {
             throw new NoSuchElementException("Aucun avis avec ID: " + avis.getId());
         }
         return avisRepository.save(avis);
@@ -58,6 +58,11 @@ public class AvisServiceImpl implements AvisService {
         avis.setFormation(formation);
         updateAvis(avis);
         formation.getAvis().add(avis);
+        int note = 0;
+        for (Avis avis1 : formation.getAvis()) {
+            note += avis1.getNote();
+        }
+        formation.setNote(note / formation.getAvis().size());
         formationService.updateFormation(formation);
         return avis;
     }

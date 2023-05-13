@@ -13,6 +13,7 @@ public class Avis {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(columnDefinition = "TEXT", length = 5000)
     private String commentaire;
     private int note;
     private LocalDate date;
